@@ -652,33 +652,62 @@
     }
 
     .photo-actions {
-      display: grid;
+      display: flex;
+      align-items: center;
       gap: 10px;
+      flex-wrap: wrap;
     }
 
     .photo-button {
-      width: 100%;
+      width: 52px;
+      height: 52px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
       border: 0;
-      border-radius: 18px;
-      padding: 16px 18px;
+      border-radius: 16px;
+      padding: 0;
       background: linear-gradient(135deg, #243b63, #3c5f98);
       color: #ffffff;
-      font: inherit;
-      font-size: 0.96rem;
-      font-weight: 800;
-      letter-spacing: 0.02em;
       box-shadow: 0 14px 28px rgba(36, 59, 99, 0.22);
       cursor: pointer;
+      flex: 0 0 auto;
     }
 
     .photo-button svg {
-      width: 18px;
-      height: 18px;
+      width: 22px;
+      height: 22px;
       fill: currentColor;
+    }
+
+    .photo-mini-action {
+      border: 0;
+      border-radius: 14px;
+      padding: 11px 14px;
+      font: inherit;
+      font-size: 0.84rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .photo-mini-action:active {
+      transform: scale(0.98);
+    }
+
+    .photo-mini-action.edit {
+      background: rgba(60, 95, 152, 0.12);
+      color: #2f4f83;
+    }
+
+    .photo-mini-action.delete {
+      background: rgba(255, 122, 69, 0.14);
+      color: #d45a2d;
+    }
+
+    .photo-mini-action.cancel {
+      background: rgba(36, 59, 99, 0.08);
+      color: #4d6288;
     }
 
     .photo-input {
@@ -690,6 +719,7 @@
       color: var(--muted);
       font-size: 0.84rem;
       min-height: 1.2em;
+      flex: 1;
     }
 
     .photo-preview-wrap {
@@ -735,16 +765,10 @@
     }
 
     .photo-item {
-      padding: 10px;
+      padding: 12px;
       border-radius: 18px;
       background: rgba(255, 255, 255, 0.72);
       border: 1px solid rgba(255, 255, 255, 0.5);
-    }
-
-    .photo-item-actions {
-      display: flex;
-      gap: 8px;
-      margin-top: 10px;
     }
 
     .photo-item-date {
@@ -766,8 +790,79 @@
 
     .photo-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .photo-card {
+      position: relative;
+      border: 0;
+      padding: 0;
+      margin: 0;
+      background: transparent;
+      cursor: pointer;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .photo-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(24, 39, 68, 0);
+      transition: background 0.2s ease;
+      pointer-events: none;
+    }
+
+    .photo-diary.is-editing .photo-card::after {
+      background: rgba(24, 39, 68, 0.1);
+    }
+
+    .photo-card.is-selected::after {
+      background: rgba(47, 111, 224, 0.3);
+    }
+
+    .photo-card.is-selected .photo-thumb {
+      outline: 3px solid #4f86ff;
+      outline-offset: -3px;
+    }
+
+    .photo-check {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 2px solid rgba(36, 59, 99, 0.2);
+      box-shadow: 0 8px 14px rgba(36, 59, 99, 0.16);
+      opacity: 0;
+      transform: scale(0.88);
+      transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      pointer-events: none;
+    }
+
+    .photo-diary.is-editing .photo-check {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .photo-card.is-selected .photo-check {
+      background: #4f86ff;
+      border-color: #4f86ff;
+    }
+
+    .photo-card.is-selected .photo-check::after {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 2px;
+      width: 6px;
+      height: 12px;
+      border: solid #ffffff;
+      border-width: 0 3px 3px 0;
+      transform: rotate(45deg);
     }
 
     .value {
@@ -955,9 +1050,11 @@
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M9 4l1.2-1.8c.2-.3.5-.5.9-.5h1.8c.4 0 .7.2.9.5L15 4h3.3c1.4 0 2.5 1.1 2.5 2.5v10.8c0 1.4-1.1 2.5-2.5 2.5H5.7c-1.4 0-2.5-1.1-2.5-2.5V6.5C3.2 5.1 4.3 4 5.7 4H9zm3 3.2a4.8 4.8 0 1 0 0 9.6a4.8 4.8 0 0 0 0-9.6zm0 1.8a3 3 0 1 1 0 6a3 3 0 0 1 0-6z"/>
             </svg>
-            Abrir camara
           </label>
           <input class="photo-input" id="photo-input" type="file" accept="image/*" capture="environment">
+          <button class="photo-mini-action edit" id="photo-edit-toggle" type="button">Editar</button>
+          <button class="photo-mini-action delete" id="photo-delete-selected" type="button" hidden>Borrar</button>
+          <button class="photo-mini-action cancel" id="photo-cancel-edit" type="button" hidden>Cancelar</button>
           <p class="photo-status" id="photo-status"></p>
         </div>
         <div class="photo-preview-wrap">
@@ -1025,6 +1122,7 @@
       };
     });
     const state = { plansByDay: {}, phrasesByDay: {}, photosByDay: {} };
+    const selectedPhotoIds = new Set();
     const elements = {
       days: document.getElementById("days"),
       hours: document.getElementById("hours"),
@@ -1049,6 +1147,9 @@
       photoToggle: document.getElementById("photo-toggle"),
       photoInput: document.getElementById("photo-input"),
       photoStatus: document.getElementById("photo-status"),
+      photoEditToggle: document.getElementById("photo-edit-toggle"),
+      photoDeleteSelected: document.getElementById("photo-delete-selected"),
+      photoCancelEdit: document.getElementById("photo-cancel-edit"),
       photoPreviewWrap: document.querySelector(".photo-preview-wrap"),
       photoMeta: document.getElementById("photo-meta"),
       photoTodayGrid: document.getElementById("photo-today-grid"),
@@ -1069,6 +1170,7 @@
     let plannerRenderedDayKey = "";
     let plannerEditingId = "";
     let plannerEditingDayKey = "";
+    let photoEditMode = false;
 
     function pad(value) {
       return String(value).padStart(2, "0");
@@ -1139,13 +1241,27 @@
       renderSavedPhrases(now);
     }
 
+    function renderPhotoCard(item, dayLabel, dayKey) {
+      const selectedClass = selectedPhotoIds.has(item.id) ? " is-selected" : "";
+      return `<button class="photo-card${selectedClass}" type="button" data-action="toggle-photo-selection" data-day="${escapeHtml(dayKey)}" data-id="${escapeHtml(item.id)}" aria-label="Foto de ${escapeHtml(dayLabel)}"><img class="photo-thumb" src="${escapeHtml(item.publicUrl)}" alt="Foto de ${escapeHtml(dayLabel)}"><span class="photo-check" aria-hidden="true"></span></button>`;
+    }
+
+    function syncPhotoEditingUi() {
+      elements.photoSection.classList.toggle("is-editing", photoEditMode);
+      elements.photoEditToggle.textContent = photoEditMode ? "Seleccionando" : "Editar";
+      elements.photoDeleteSelected.hidden = !photoEditMode;
+      elements.photoCancelEdit.hidden = !photoEditMode;
+      elements.photoDeleteSelected.textContent = selectedPhotoIds.size > 0 ? `Borrar (${selectedPhotoIds.size})` : "Borrar";
+    }
+
     function renderPhotos(now) {
       const day = getDayData(now);
       const currentItems = state.photosByDay[day.key] || [];
+      syncPhotoEditingUi();
       if (currentItems.length > 0) {
         elements.photoPreviewWrap.classList.add("is-visible");
         elements.photoMeta.textContent = `Fotos del ${day.label}`;
-        elements.photoTodayGrid.innerHTML = currentItems.map((item) => `<article class="photo-item"><img class="photo-thumb" src="${escapeHtml(item.publicUrl)}" alt="Foto de ${escapeHtml(day.label)}"><div class="photo-item-actions"><button class="planner-mini delete" type="button" data-action="delete-photo" data-day="${escapeHtml(day.key)}" data-id="${escapeHtml(item.id)}">Borrar foto</button></div></article>`).join("");
+        elements.photoTodayGrid.innerHTML = currentItems.map((item) => renderPhotoCard(item, day.label, day.key)).join("");
       } else {
         elements.photoPreviewWrap.classList.remove("is-visible");
         elements.photoTodayGrid.innerHTML = "";
@@ -1154,7 +1270,7 @@
       const filledDays = tripDays.filter((tripDay) => (state.photosByDay[tripDay.key] || []).length > 0);
       const historyDays = filledDays.filter((tripDay) => tripDay.key !== day.key);
       elements.photoStripTitle.classList.toggle("is-visible", historyDays.length > 0);
-      elements.photoList.innerHTML = historyDays.map((tripDay) => `<article class="photo-item"><p class="photo-item-date">${escapeHtml(tripDay.label)}</p><div class="photo-grid">${(state.photosByDay[tripDay.key] || []).map((item) => `<div><img class="photo-thumb" src="${escapeHtml(item.publicUrl)}" alt="Foto de ${escapeHtml(tripDay.label)}"><div class="photo-item-actions"><button class="planner-mini delete" type="button" data-action="delete-photo" data-day="${escapeHtml(tripDay.key)}" data-id="${escapeHtml(item.id)}">Borrar foto</button></div></div>`).join("")}</div></article>`).join("");
+      elements.photoList.innerHTML = historyDays.map((tripDay) => `<article class="photo-item"><p class="photo-item-date">${escapeHtml(tripDay.label)}</p><div class="photo-grid">${(state.photosByDay[tripDay.key] || []).map((item) => renderPhotoCard(item, tripDay.label, tripDay.key)).join("")}</div></article>`).join("");
     }
 
     function renderPlanner(now) {
@@ -1432,51 +1548,84 @@
       renderPhotos(new Date());
     });
 
-    elements.photoList.addEventListener("click", async (event) => {
-      const button = event.target.closest("button[data-action='delete-photo']");
+    elements.photoEditToggle.addEventListener("click", () => {
+      photoEditMode = true;
+      elements.photoSection.classList.add("is-open");
+      elements.photoStatus.textContent = selectedPhotoIds.size > 0 ? `${selectedPhotoIds.size} fotos seleccionadas.` : "Selecciona las fotos que quieras borrar.";
+      renderPhotos(new Date());
+    });
+
+    elements.photoCancelEdit.addEventListener("click", () => {
+      photoEditMode = false;
+      selectedPhotoIds.clear();
+      elements.photoStatus.textContent = "";
+      renderPhotos(new Date());
+    });
+
+    elements.photoDeleteSelected.addEventListener("click", async () => {
+      if (selectedPhotoIds.size === 0) {
+        elements.photoStatus.textContent = "Selecciona al menos una foto.";
+        return;
+      }
+
+      const selectedItems = Object.entries(state.photosByDay).flatMap(([dayKey, items]) =>
+        items
+          .filter((item) => selectedPhotoIds.has(item.id))
+          .map((item) => ({ dayKey, ...item }))
+      );
+
+      if (selectedItems.length === 0) {
+        selectedPhotoIds.clear();
+        elements.photoStatus.textContent = "No se encontraron las fotos seleccionadas.";
+        renderPhotos(new Date());
+        return;
+      }
+
+      elements.photoStatus.textContent = "Borrando fotos...";
+      const photoPaths = selectedItems.map((item) => item.photo_path).filter(Boolean);
+      if (photoPaths.length > 0) {
+        await supabase.storage.from(photoBucket).remove(photoPaths);
+      }
+
+      const { error } = await supabase.from("trip_photos").delete().in("id", selectedItems.map((item) => item.id));
+      if (error) {
+        elements.photoStatus.textContent = "No se pudieron borrar las fotos.";
+        return;
+      }
+
+      for (const item of selectedItems) {
+        state.photosByDay[item.dayKey] = (state.photosByDay[item.dayKey] || []).filter((photo) => photo.id !== item.id);
+        if (state.photosByDay[item.dayKey].length === 0) delete state.photosByDay[item.dayKey];
+      }
+
+      const deletedCount = selectedItems.length;
+      selectedPhotoIds.clear();
+      photoEditMode = false;
+      elements.photoStatus.textContent = deletedCount === 1 ? "1 foto borrada." : `${deletedCount} fotos borradas.`;
+      renderPhotos(new Date());
+    });
+
+    async function handlePhotoGridClick(event) {
+      const button = event.target.closest("button[data-action='toggle-photo-selection']");
       if (!button) return;
 
       const dayKey = button.dataset.day;
       const photoId = button.dataset.id;
       const current = (state.photosByDay[dayKey] || []).find((item) => item.id === photoId);
-      if (!current?.photo_path) return;
+      if (!current || !photoEditMode) return;
 
-      elements.photoStatus.textContent = "Borrando foto...";
-      await supabase.storage.from(photoBucket).remove([current.photo_path]);
-      const { error } = await supabase.from("trip_photos").delete().eq("id", photoId);
-      if (error) {
-        elements.photoStatus.textContent = "No se pudo borrar la foto.";
-        return;
+      if (selectedPhotoIds.has(photoId)) {
+        selectedPhotoIds.delete(photoId);
+      } else {
+        selectedPhotoIds.add(photoId);
       }
 
-      state.photosByDay[dayKey] = (state.photosByDay[dayKey] || []).filter((item) => item.id !== photoId);
-      if (state.photosByDay[dayKey].length === 0) delete state.photosByDay[dayKey];
-      elements.photoStatus.textContent = "Foto borrada.";
+      elements.photoStatus.textContent = selectedPhotoIds.size > 0 ? `${selectedPhotoIds.size} fotos seleccionadas.` : "Selecciona las fotos que quieras borrar.";
       renderPhotos(new Date());
-    });
+    }
 
-    elements.photoTodayGrid.addEventListener("click", async (event) => {
-      const button = event.target.closest("button[data-action='delete-photo']");
-      if (!button) return;
-
-      const dayKey = button.dataset.day;
-      const photoId = button.dataset.id;
-      const current = (state.photosByDay[dayKey] || []).find((item) => item.id === photoId);
-      if (!current?.photo_path) return;
-
-      elements.photoStatus.textContent = "Borrando foto...";
-      await supabase.storage.from(photoBucket).remove([current.photo_path]);
-      const { error } = await supabase.from("trip_photos").delete().eq("id", photoId);
-      if (error) {
-        elements.photoStatus.textContent = "No se pudo borrar la foto.";
-        return;
-      }
-
-      state.photosByDay[dayKey] = (state.photosByDay[dayKey] || []).filter((item) => item.id !== photoId);
-      if (state.photosByDay[dayKey].length === 0) delete state.photosByDay[dayKey];
-      elements.photoStatus.textContent = "Foto borrada.";
-      renderPhotos(new Date());
-    });
+    elements.photoList.addEventListener("click", handlePhotoGridClick);
+    elements.photoTodayGrid.addEventListener("click", handlePhotoGridClick);
 
     async function init() {
       updateCountdown();
