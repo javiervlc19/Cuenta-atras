@@ -7,15 +7,16 @@
   <style>
     :root {
       color-scheme: light;
-      --bg-start: #fff8ef;
-      --bg-end: #ffd7b8;
-      --card: rgba(255, 255, 255, 0.76);
-      --text: #2a1f1a;
-      --muted: #6c5b54;
-      --accent: #f06b42;
-      --accent-soft: rgba(240, 107, 66, 0.14);
-      --line-soft: rgba(42, 31, 26, 0.12);
-      --shadow: 0 24px 80px rgba(125, 66, 34, 0.16);
+      --bg-start: #eef6ff;
+      --bg-mid: #dce9ff;
+      --bg-end: #ffd8bf;
+      --card: rgba(255, 255, 255, 0.72);
+      --text: #1f2a44;
+      --muted: #61708f;
+      --accent: #ff7a45;
+      --accent-soft: rgba(255, 122, 69, 0.14);
+      --line-soft: rgba(97, 112, 143, 0.18);
+      --shadow: 0 28px 90px rgba(69, 93, 140, 0.16);
       --radius: 28px;
     }
 
@@ -29,11 +30,14 @@
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top, rgba(255, 255, 255, 0.65), transparent 38%),
-        linear-gradient(160deg, var(--bg-start), var(--bg-end));
+        radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.92), transparent 24%),
+        radial-gradient(circle at 80% 20%, rgba(186, 220, 255, 0.7), transparent 28%),
+        radial-gradient(circle at 50% 85%, rgba(255, 194, 152, 0.5), transparent 22%),
+        linear-gradient(180deg, var(--bg-start) 0%, var(--bg-mid) 52%, var(--bg-end) 100%);
       display: grid;
       place-items: center;
       padding: 20px;
+      overflow-x: hidden;
     }
 
     .blob {
@@ -42,23 +46,31 @@
       width: 42vw;
       aspect-ratio: 1;
       border-radius: 50%;
-      filter: blur(24px);
-      opacity: 0.45;
+      filter: blur(34px);
+      opacity: 0.5;
       pointer-events: none;
-      animation: float 12s ease-in-out infinite;
+      animation: float 16s ease-in-out infinite;
     }
 
     .blob.one {
-      top: 8%;
-      left: -10%;
-      background: #ffe27a;
+      top: 2%;
+      left: -8%;
+      background: rgba(255, 255, 255, 0.95);
     }
 
     .blob.two {
-      right: -12%;
-      bottom: 10%;
-      background: #ff9d7a;
-      animation-delay: -5s;
+      right: -10%;
+      bottom: 12%;
+      background: rgba(255, 182, 130, 0.45);
+      animation-delay: -6s;
+    }
+
+    .blob.three {
+      top: 34%;
+      right: 8%;
+      width: 26vw;
+      background: rgba(201, 227, 255, 0.7);
+      animation-delay: -2s;
     }
 
     .app {
@@ -71,25 +83,12 @@
       padding: 28px 22px;
     }
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
     .journey {
       position: relative;
       margin-bottom: 24px;
       padding: 18px 14px 22px;
-      background: rgba(255, 255, 255, 0.56);
+      background:
+        linear-gradient(180deg, rgba(246, 250, 255, 0.9), rgba(255, 241, 231, 0.84));
       border: 1px solid rgba(255, 255, 255, 0.55);
       border-radius: 24px;
       overflow: hidden;
@@ -136,7 +135,7 @@
     .route {
       position: relative;
       margin: 0 18px;
-      height: 56px;
+      height: 68px;
     }
 
     .route-line,
@@ -144,7 +143,7 @@
       position: absolute;
       left: 0;
       top: 50%;
-      height: 6px;
+      height: 8px;
       border-radius: 999px;
       transform: translateY(-50%);
     }
@@ -157,12 +156,13 @@
           var(--line-soft) 0 12px,
           transparent 12px 20px
         );
+      opacity: 0.9;
     }
 
     .route-progress {
       width: 0;
-      background: linear-gradient(90deg, #ffb357, var(--accent));
-      box-shadow: 0 0 18px rgba(240, 107, 66, 0.28);
+      background: linear-gradient(90deg, #7fc2ff, var(--accent));
+      box-shadow: 0 0 20px rgba(255, 122, 69, 0.24);
     }
 
     .plane {
@@ -183,6 +183,124 @@
       color: var(--muted);
       font-size: 0.84rem;
       font-weight: 600;
+    }
+
+    .journey-meta span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .song-card {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 24px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.68);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    }
+
+    .song-cover {
+      width: 92px;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 20px;
+      display: block;
+      box-shadow: 0 14px 28px rgba(42, 31, 26, 0.14);
+    }
+
+    .song-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      color: #1d9b5d;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .song-title {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .song-meta {
+      display: none;
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .song-link {
+      display: inline-block;
+      margin-top: 10px;
+      color: var(--accent);
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .song-link:hover {
+      text-decoration: underline;
+    }
+
+    .phrase-wrap {
+      margin-bottom: 24px;
+    }
+
+    .phrase-button {
+      width: 100%;
+      border: 0;
+      border-radius: 18px;
+      padding: 16px 18px;
+      background: linear-gradient(135deg, #ff8456, #ffb36d);
+      color: #ffffff;
+      font-size: 0.96rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      box-shadow: 0 14px 28px rgba(255, 122, 69, 0.22);
+      cursor: pointer;
+    }
+
+    .phrase-box {
+      display: none;
+      margin-top: 12px;
+      padding: 18px 16px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      color: var(--text);
+      text-align: center;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    }
+
+    .phrase-box.is-visible {
+      display: block;
+    }
+
+    .phrase-label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--accent);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .phrase-text {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.5;
+      font-weight: 700;
     }
 
     .grid {
@@ -254,10 +372,9 @@
 <body>
   <div class="blob one"></div>
   <div class="blob two"></div>
+  <div class="blob three"></div>
 
   <main class="app">
-    <div class="eyebrow">Cuenta atrás</div>
-
     <section class="journey" aria-label="Trayecto del viaje">
       <div class="journey-top">
         <div class="place">
@@ -319,6 +436,26 @@
       </div>
     </section>
 
+    <section class="song-card" aria-label="Portada diaria de Spotify">
+      <img class="song-cover" id="song-cover" alt="Portada de Spotify del día">
+      <div>
+        <div class="song-kicker">Spotify del día</div>
+        <p class="song-title" id="song-title">Cargando canción...</p>
+        <p class="song-meta" id="song-meta"></p>
+        <a class="song-link" id="song-link" href="https://open.spotify.com/playlist/6dcn0botFOWBa0RccwhTC7" target="_blank" rel="noreferrer">
+          Abrir en Spotify
+        </a>
+      </div>
+    </section>
+
+    <section class="phrase-wrap" aria-label="Frase del día">
+      <button class="phrase-button" id="phrase-button" type="button">Ver frase del día</button>
+      <div class="phrase-box" id="phrase-box">
+        <span class="phrase-label">Frase del día</span>
+        <p class="phrase-text" id="phrase-text"></p>
+      </div>
+    </section>
+
     <section class="grid" aria-label="Cuenta atrás">
       <article class="unit">
         <span class="value" id="days">0</span>
@@ -344,6 +481,102 @@
   <script>
     const startDate = new Date("2026-08-05T00:00:00");
     const targetDate = new Date("2026-08-19T23:59:59");
+    const playlistUrl = "https://open.spotify.com/playlist/6dcn0botFOWBa0RccwhTC7";
+    const dailyPhrases = [
+      "Todo lo bonito que viene hacia ti ya ha empezado a encontrarte.",
+      "A veces el destino tarda un poco, pero siempre sabe llegar a tiempo.",
+      "Cada día que pasa es una página más de algo que vas a recordar con una sonrisa.",
+      "Lo mejor de algunos viajes es que empiezan en el corazón antes que en el mapa.",
+      "Hay esperas que merecen la pena porque al final traen abrazos, luz y calma.",
+      "La ilusión también cuenta kilómetros, aunque viaje en silencio.",
+      "Cuando algo importa de verdad, cada día de espera también tiene sentido.",
+      "El amor bonito siempre encuentra la forma de acercar dos lugares.",
+      "No hace falta correr cuando lo que te espera al final ya es especial.",
+      "Todo está avanzando, incluso en los días que parecen quietos.",
+      "Qué suerte tener un motivo tan bonito para mirar la cuenta atrás con ganas.",
+      "Lo que está hecho para ti se siente cerca incluso antes de llegar.",
+      "Cada amanecer te deja un poco más cerca de ese momento que tanto imaginas.",
+      "Hay encuentros que convierten la espera en parte de la magia.",
+      "Hoy ya casi se toca con las manos todo lo bonito que estaba por venir."
+    ];
+    const dailyTracks = [
+      {
+        title: "La Noche Contigo",
+        image: "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e025dc5131e3679aae6ec377fc9",
+        url: "https://open.spotify.com/track/7yuwzYw5IxF6j2BZYJ9KZ4"
+      },
+      {
+        title: "Benijo",
+        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e0281ba0bde875b2e9d33b711bb",
+        url: "https://open.spotify.com/track/7zSpn5zvfppsQGC1hbldw9"
+      },
+      {
+        title: "Sinatra",
+        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e025e1bc9a9361df850bbd99f60",
+        url: "https://open.spotify.com/track/0mwNxjiYUyVGLSVo9UnIjv"
+      },
+      {
+        title: "Una vida sin ti",
+        image: "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02cacd4a24a14436e4cafb6def",
+        url: "https://open.spotify.com/track/5BEGTcCRSviHwbXtfNTizE"
+      },
+      {
+        title: "Por ti por mí",
+        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e0212eb3d348226fce5884452e0",
+        url: "https://open.spotify.com/track/1EK4DofkWaRLBsG27jhmlt"
+      },
+      {
+        title: "A tu lado",
+        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e026e38ceb7ca3b25244df62a21",
+        url: "https://open.spotify.com/track/1R6NmAzOGeZ7hP4OoCfEeU"
+      },
+      {
+        title: "Un amor como los de antes",
+        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e026a1bc585fa2cd3f9a6a2fdfa",
+        url: "https://open.spotify.com/track/091cJW2tB4lqlNEX6pOsll"
+      },
+      {
+        title: "Todo contigo",
+        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e0227d7fb4b186a0c53a0b3f7f2",
+        url: "https://open.spotify.com/track/2vwdbfJUtPh1E6aiyNNAjM"
+      },
+      {
+        title: "Física y Química",
+        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02c01b615a760bee0884540782",
+        url: "https://open.spotify.com/track/6LjMfmFadOqv00mkoEhYlR"
+      },
+      {
+        title: "Amor Infinito",
+        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e026da95744863b69993a646ecb",
+        url: "https://open.spotify.com/track/1KTFvlTR9JCrceX0VJrVxS"
+      },
+      {
+        title: "Cuando te tengo delante",
+        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02d5edcb8f8b306b06858b54c6",
+        url: "https://open.spotify.com/track/3wRCQDJtooruv3voomaHqQ"
+      },
+      {
+        title: "El Sitio de Siempre",
+        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e0279c0923e46a4e87fa93d0de2",
+        url: "https://open.spotify.com/track/3PzUILVXbLiNCIRx4qq5IL"
+      },
+      {
+        title: "Qué bonito",
+        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02952beb29db5f6ce151e30bd2",
+        url: "https://open.spotify.com/track/20nWXGPfwZuvZfpK1CrF6t"
+      },
+      {
+        title: "¿Y si lo hacemos? (feat. Valeria Castro)",
+        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02ff9f94c5e737ac4656595609",
+        url: "https://open.spotify.com/track/2rkZ5enpmgfL1kFp0IWFrR"
+      },
+      {
+        title: "Robarle tiempo al tiempo",
+        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e021dd6f01837c88311dd661c47",
+        url: "https://open.spotify.com/track/0TCgYIbphnGDyOrdTHRvtJ"
+      }
+    ];
+
     const elements = {
       days: document.getElementById("days"),
       hours: document.getElementById("hours"),
@@ -353,11 +586,40 @@
       routeProgress: document.getElementById("route-progress"),
       plane: document.getElementById("plane"),
       progressText: document.getElementById("progress-text"),
-      daysLeft: document.getElementById("days-left")
+      daysLeft: document.getElementById("days-left"),
+      songCover: document.getElementById("song-cover"),
+      songTitle: document.getElementById("song-title"),
+      songMeta: document.getElementById("song-meta"),
+      songLink: document.getElementById("song-link"),
+      phraseButton: document.getElementById("phrase-button"),
+      phraseBox: document.getElementById("phrase-box"),
+      phraseText: document.getElementById("phrase-text")
     };
 
     function pad(value) {
       return String(value).padStart(2, "0");
+    }
+
+    function updateDailySong(now) {
+      const elapsedDays = Math.max(0, Math.floor((now - startDate) / 86400000));
+      const index = Math.min(elapsedDays, dailyTracks.length - 1);
+      const track = dailyTracks[index];
+
+      elements.songCover.src = track.image;
+      elements.songCover.alt = `Portada de ${track.title}`;
+      elements.songTitle.textContent = track.title;
+      elements.songMeta.textContent = "";
+      elements.songLink.href = track.url || playlistUrl;
+    }
+
+    function getDayIndex(now) {
+      const elapsedDays = Math.max(0, Math.floor((now - startDate) / 86400000));
+      return Math.min(elapsedDays, dailyPhrases.length - 1);
+    }
+
+    function updateDailyPhrase(now) {
+      const index = getDayIndex(now);
+      elements.phraseText.textContent = dailyPhrases[index];
     }
 
     function updateCountdown() {
@@ -371,6 +633,8 @@
       elements.routeProgress.style.width = `${progressPercent}%`;
       elements.plane.style.left = `${progressPercent}%`;
       elements.progressText.textContent = `${progressPercent}% del trayecto`;
+      updateDailySong(now);
+      updateDailyPhrase(now);
 
       if (diff <= 0) {
         elements.days.textContent = "00";
@@ -397,6 +661,10 @@
       elements.seconds.textContent = pad(seconds);
       elements.daysLeft.textContent = `${days} días por delante`;
     }
+
+    elements.phraseButton.addEventListener("click", () => {
+      elements.phraseBox.classList.toggle("is-visible");
+    });
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
