@@ -212,19 +212,31 @@
     }
 
     .journey-meta {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
       margin-top: 12px;
-      color: var(--muted);
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.04em;
     }
 
-    .journey-meta span {
-      position: relative;
-      z-index: 1;
+    .journey-stat {
+      padding: 10px 6px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.58);
+      text-align: center;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    }
+
+    .journey-stat .value {
+      display: block;
+      font-size: 1.25rem;
+      line-height: 1;
+      letter-spacing: -0.06em;
+    }
+
+    .journey-stat .label {
+      margin-top: 4px;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
     }
 
     .song-card {
@@ -379,6 +391,12 @@
       border-radius: 18px;
       background: rgba(255, 255, 255, 0.72);
       border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .phrase-item-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
     }
 
     .phrase-saved-name {
@@ -582,6 +600,52 @@
 
     .photo-diary {
       margin-bottom: 24px;
+      padding: 0;
+      border-radius: 24px;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+    }
+
+    .photo-diary.is-open .photo-content {
+      display: block;
+    }
+
+    .photo-toggle {
+      width: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: 18px;
+      padding: 16px 18px;
+      background: linear-gradient(135deg, #243b63, #3c5f98);
+      color: #ffffff;
+      font: inherit;
+      font-size: 0.96rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      box-shadow: 0 14px 28px rgba(36, 59, 99, 0.22);
+      cursor: pointer;
+    }
+
+    .photo-toggle::after {
+      content: "+";
+      position: absolute;
+      right: 18px;
+      color: currentColor;
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    .photo-diary.is-open .photo-toggle::after {
+      content: "-";
+    }
+
+    .photo-content {
+      display: none;
+      margin-top: 14px;
       padding: 16px;
       border-radius: 24px;
       background: rgba(255, 255, 255, 0.68);
@@ -605,6 +669,17 @@
     .photo-actions {
       display: grid;
       gap: 10px;
+    }
+
+    .photo-secondary {
+      border: 0;
+      border-radius: 16px;
+      padding: 14px 16px;
+      background: rgba(36, 59, 99, 0.12);
+      color: #243b63;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
     }
 
     .photo-button {
@@ -680,6 +755,12 @@
       border: 1px solid rgba(255, 255, 255, 0.5);
     }
 
+    .photo-item-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
     .photo-item-date {
       margin: 0 0 8px;
       color: var(--accent);
@@ -697,35 +778,15 @@
       display: block;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .unit {
-      background: rgba(255, 255, 255, 0.72);
-      border-radius: 22px;
-      padding: 18px 14px;
-      text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.55);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
-    }
-
     .value {
       display: block;
-      font-size: clamp(2rem, 10vw, 3.2rem);
       font-weight: 800;
-      letter-spacing: -0.06em;
     }
 
     .label {
       display: block;
-      margin-top: 6px;
       color: var(--muted);
-      font-size: 0.86rem;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
     }
 
     .done {
@@ -753,12 +814,16 @@
         padding: 22px 16px;
       }
 
-      .grid {
-        gap: 10px;
+      .journey-meta {
+        gap: 6px;
       }
 
-      .unit {
-        padding: 16px 10px;
+      .journey-stat {
+        padding: 9px 4px;
+      }
+
+      .journey-stat .value {
+        font-size: 1.1rem;
       }
     }
   </style>
@@ -827,8 +892,22 @@
         <div class="plane" id="plane">✈</div>
       </div>
       <div class="journey-meta">
-        <span id="progress-text">0% del trayecto</span>
-        <span id="days-left">14 días por delante</span>
+        <div class="journey-stat">
+          <span class="value" id="days">0</span>
+          <span class="label">Días</span>
+        </div>
+        <div class="journey-stat">
+          <span class="value" id="hours">0</span>
+          <span class="label">Horas</span>
+        </div>
+        <div class="journey-stat">
+          <span class="value" id="minutes">0</span>
+          <span class="label">Min</span>
+        </div>
+        <div class="journey-stat">
+          <span class="value" id="seconds">0</span>
+          <span class="label">Seg</span>
+        </div>
       </div>
     </section>
 
@@ -878,55 +957,40 @@
     </section>
 
     <section class="photo-diary" aria-label="Diario de fotos">
-      <p class="photo-title">Diario de fotos</p>
-      <p class="photo-subtitle">Sube una foto de cada día. En móvil, el botón abrirá la cámara directamente si el navegador lo permite.</p>
-      <div class="photo-actions">
-        <label class="photo-button" for="photo-input">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M9 4l1.2-1.8c.2-.3.5-.5.9-.5h1.8c.4 0 .7.2.9.5L15 4h3.3c1.4 0 2.5 1.1 2.5 2.5v10.8c0 1.4-1.1 2.5-2.5 2.5H5.7c-1.4 0-2.5-1.1-2.5-2.5V6.5C3.2 5.1 4.3 4 5.7 4H9zm3 3.2a4.8 4.8 0 1 0 0 9.6a4.8 4.8 0 0 0 0-9.6zm0 1.8a3 3 0 1 1 0 6a3 3 0 0 1 0-6z"/>
-          </svg>
-          Abrir cámara
-        </label>
-        <input class="photo-input" id="photo-input" type="file" accept="image/*" capture="environment">
-        <p class="photo-status" id="photo-status"></p>
+      <button class="photo-toggle" id="photo-toggle" type="button">Diario de fotos</button>
+      <div class="photo-content" id="photo-content">
+        <p class="photo-subtitle">Sube una foto de cada dia. En movil, el boton abrira la camara directamente si el navegador lo permite.</p>
+        <div class="photo-actions">
+          <label class="photo-button" for="photo-input">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 4l1.2-1.8c.2-.3.5-.5.9-.5h1.8c.4 0 .7.2.9.5L15 4h3.3c1.4 0 2.5 1.1 2.5 2.5v10.8c0 1.4-1.1 2.5-2.5 2.5H5.7c-1.4 0-2.5-1.1-2.5-2.5V6.5C3.2 5.1 4.3 4 5.7 4H9zm3 3.2a4.8 4.8 0 1 0 0 9.6a4.8 4.8 0 0 0 0-9.6zm0 1.8a3 3 0 1 1 0 6a3 3 0 0 1 0-6z"/>
+            </svg>
+            Abrir camara
+          </label>
+          <input class="photo-input" id="photo-input" type="file" accept="image/*" capture="environment">
+          <button class="photo-secondary" id="photo-delete" type="button">Borrar foto del dia</button>
+          <p class="photo-status" id="photo-status"></p>
+        </div>
+        <div class="photo-preview-wrap">
+          <img class="photo-preview" id="photo-preview" alt="Foto guardada del dia">
+          <p class="photo-meta" id="photo-meta"></p>
+        </div>
+        <div class="photo-list" id="photo-list"></div>
       </div>
-      <div class="photo-preview-wrap">
-        <img class="photo-preview" id="photo-preview" alt="Foto guardada del día">
-        <p class="photo-meta" id="photo-meta"></p>
-      </div>
-      <div class="photo-list" id="photo-list"></div>
-    </section>
-
-    <section class="grid" aria-label="Cuenta atrás">
-      <article class="unit">
-        <span class="value" id="days">0</span>
-        <span class="label">Días</span>
-      </article>
-      <article class="unit">
-        <span class="value" id="hours">0</span>
-        <span class="label">Horas</span>
-      </article>
-      <article class="unit">
-        <span class="value" id="minutes">0</span>
-        <span class="label">Minutos</span>
-      </article>
-      <article class="unit">
-        <span class="value" id="seconds">0</span>
-        <span class="label">Segundos</span>
-      </article>
     </section>
 
     <div class="done" id="done">La fecha ya ha llegado.</div>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script>
+  <script type="module">
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
     const startDate = new Date("2026-08-05T00:00:00");
     const targetDate = new Date("2026-08-19T23:59:59");
     const playlistUrl = "https://open.spotify.com/playlist/6dcn0botFOWBa0RccwhTC7";
     const supabaseUrl = "https://tbuxgrsflstvxdpkfmqh.supabase.co";
     const supabaseKey = "sb_publishable_CttRggCC1UMWlzrEhAP9PQ_-oNkQPJx";
-    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+    const supabase = createClient(supabaseUrl, supabaseKey);
     const photoBucket = "trip-photos";
     const dailyPhrases = [
       "Todo lo bonito que viene hacia ti ya ha empezado a encontrarte.",
@@ -979,8 +1043,6 @@
       done: document.getElementById("done"),
       routeProgress: document.getElementById("route-progress"),
       plane: document.getElementById("plane"),
-      progressText: document.getElementById("progress-text"),
-      daysLeft: document.getElementById("days-left"),
       songCover: document.getElementById("song-cover"),
       songTitle: document.getElementById("song-title"),
       songMeta: document.getElementById("song-meta"),
@@ -993,7 +1055,10 @@
       phrasePersonTwo: document.getElementById("phrase-person-two"),
       phraseStatus: document.getElementById("phrase-status"),
       phraseSaved: document.getElementById("phrase-saved"),
+      photoSection: document.querySelector(".photo-diary"),
+      photoToggle: document.getElementById("photo-toggle"),
       photoInput: document.getElementById("photo-input"),
+      photoDelete: document.getElementById("photo-delete"),
       photoStatus: document.getElementById("photo-status"),
       photoPreview: document.getElementById("photo-preview"),
       photoMeta: document.getElementById("photo-meta"),
@@ -1070,10 +1135,10 @@
 
       const blocks = [];
       if (saved.nuria) {
-        blocks.push(`<div class="phrase-saved-item"><p class="phrase-saved-name">Nuria</p><p class="phrase-saved-text">${escapeHtml(saved.nuria)}</p></div>`);
+        blocks.push(`<div class="phrase-saved-item"><p class="phrase-saved-name">Nuria</p><p class="phrase-saved-text">${escapeHtml(saved.nuria)}</p><div class="phrase-item-actions"><button class="planner-mini edit" type="button" data-action="edit-phrase" data-person="nuria">Editar</button><button class="planner-mini delete" type="button" data-action="delete-phrase" data-person="nuria">Borrar</button></div></div>`);
       }
       if (saved.javi) {
-        blocks.push(`<div class="phrase-saved-item"><p class="phrase-saved-name">Javi</p><p class="phrase-saved-text">${escapeHtml(saved.javi)}</p></div>`);
+        blocks.push(`<div class="phrase-saved-item"><p class="phrase-saved-name">Javi</p><p class="phrase-saved-text">${escapeHtml(saved.javi)}</p><div class="phrase-item-actions"><button class="planner-mini edit" type="button" data-action="edit-phrase" data-person="javi">Editar</button><button class="planner-mini delete" type="button" data-action="delete-phrase" data-person="javi">Borrar</button></div></div>`);
       }
       elements.phraseSaved.innerHTML = blocks.join("");
     }
@@ -1098,7 +1163,7 @@
       }
 
       const filledDays = tripDays.filter((tripDay) => state.photosByDay[tripDay.key]?.publicUrl);
-      elements.photoList.innerHTML = filledDays.map((tripDay) => `<article class="photo-item"><p class="photo-item-date">${escapeHtml(tripDay.label)}</p><img class="photo-thumb" src="${escapeHtml(state.photosByDay[tripDay.key].publicUrl)}" alt="Foto de ${escapeHtml(tripDay.label)}"></article>`).join("");
+      elements.photoList.innerHTML = filledDays.map((tripDay) => `<article class="photo-item"><p class="photo-item-date">${escapeHtml(tripDay.label)}</p><img class="photo-thumb" src="${escapeHtml(state.photosByDay[tripDay.key].publicUrl)}" alt="Foto de ${escapeHtml(tripDay.label)}"><div class="photo-item-actions"><button class="planner-mini delete" type="button" data-action="delete-photo" data-day="${escapeHtml(tripDay.key)}">Borrar foto</button></div></article>`).join("");
     }
 
     function renderPlanner(now) {
@@ -1137,7 +1202,6 @@
       const progressPercent = Math.round(progress * 100);
       elements.routeProgress.style.width = `${progressPercent}%`;
       elements.plane.style.left = `${progressPercent}%`;
-      elements.progressText.textContent = `${progressPercent}% del trayecto`;
       elements.timeKorea.textContent = formatTimeInZone(now, "Asia/Seoul");
       elements.timeSpain.textContent = formatTimeInZone(now, "Europe/Madrid");
       updateDailySong(now);
@@ -1153,8 +1217,6 @@
         elements.done.style.display = "block";
         elements.routeProgress.style.width = "100%";
         elements.plane.style.left = "100%";
-        elements.progressText.textContent = "100% del trayecto";
-        elements.daysLeft.textContent = "Has llegado a destino";
         return;
       }
 
@@ -1167,7 +1229,6 @@
       elements.hours.textContent = pad(hours);
       elements.minutes.textContent = pad(minutes);
       elements.seconds.textContent = pad(seconds);
-      elements.daysLeft.textContent = `${days} dias por delante`;
     }
 
     async function loadCloudData() {
@@ -1202,6 +1263,48 @@
       elements.phraseBox.classList.toggle("is-visible");
     });
 
+    elements.phraseSaved.addEventListener("click", async (event) => {
+      const button = event.target.closest("button[data-action='edit-phrase'], button[data-action='delete-phrase']");
+      if (!button) return;
+
+      const day = getDayData(new Date());
+      const person = button.dataset.person;
+      const current = state.phrasesByDay[day.key] || { nuria: "", javi: "" };
+
+      if (button.dataset.action === "edit-phrase") {
+        if (person === "nuria") elements.phrasePersonOne.focus();
+        if (person === "javi") elements.phrasePersonTwo.focus();
+        elements.phraseStatus.textContent = "Edita la frase y vuelve a guardarla.";
+        return;
+      }
+
+      if (person === "nuria") {
+        current.nuria = "";
+        elements.phrasePersonOne.value = "";
+      }
+      if (person === "javi") {
+        current.javi = "";
+        elements.phrasePersonTwo.value = "";
+      }
+
+      const payload = {
+        day_key: day.key,
+        nuria: current.nuria || "",
+        javi: current.javi || "",
+        updated_at: new Date().toISOString()
+      };
+
+      const { error } = await supabase.from("trip_phrases").upsert(payload);
+      if (error) {
+        elements.phraseStatus.textContent = "No se pudo borrar la frase.";
+        return;
+      }
+
+      state.phrasesByDay[day.key] = payload;
+      renderSavedPhrases(new Date());
+      elements.phraseStatus.textContent = "Frase borrada.";
+    });
+
     elements.phraseForm.addEventListener("submit", async (event) => {
       event.preventDefault();
       const day = getDayData(new Date());
@@ -1226,6 +1329,10 @@
 
     elements.plannerToggle.addEventListener("click", () => {
       elements.plannerSection.classList.toggle("is-open");
+    });
+
+    elements.photoToggle.addEventListener("click", () => {
+      elements.photoSection.classList.toggle("is-open");
     });
 
     elements.plannerCancel.addEventListener("click", () => {
@@ -1337,6 +1444,48 @@
       renderPhotos(new Date());
     });
 
+    elements.photoDelete.addEventListener("click", async () => {
+      const day = getDayData(new Date());
+      const current = state.photosByDay[day.key];
+      if (!current?.photo_path) {
+        elements.photoStatus.textContent = "No hay foto guardada para hoy.";
+        return;
+      }
+
+      elements.photoStatus.textContent = "Borrando foto...";
+      await supabase.storage.from(photoBucket).remove([current.photo_path]);
+      const { error } = await supabase.from("trip_photos").delete().eq("day_key", day.key);
+      if (error) {
+        elements.photoStatus.textContent = "No se pudo borrar la foto.";
+        return;
+      }
+
+      delete state.photosByDay[day.key];
+      elements.photoStatus.textContent = "Foto borrada.";
+      renderPhotos(new Date());
+    });
+
+    elements.photoList.addEventListener("click", async (event) => {
+      const button = event.target.closest("button[data-action='delete-photo']");
+      if (!button) return;
+
+      const dayKey = button.dataset.day;
+      const current = state.photosByDay[dayKey];
+      if (!current?.photo_path) return;
+
+      elements.photoStatus.textContent = "Borrando foto...";
+      await supabase.storage.from(photoBucket).remove([current.photo_path]);
+      const { error } = await supabase.from("trip_photos").delete().eq("day_key", dayKey);
+      if (error) {
+        elements.photoStatus.textContent = "No se pudo borrar la foto.";
+        return;
+      }
+
+      delete state.photosByDay[dayKey];
+      elements.photoStatus.textContent = "Foto borrada.";
+      renderPhotos(new Date());
+    });
+
     async function init() {
       updateCountdown();
       setInterval(updateCountdown, 1000);
@@ -1355,4 +1504,5 @@
   </script>
 </body>
 </html>
+
 
