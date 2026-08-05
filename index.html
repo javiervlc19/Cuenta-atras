@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuenta atrás</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg-start: #fff8ef;
+      --bg-end: #ffd7b8;
+      --card: rgba(255, 255, 255, 0.76);
+      --text: #2a1f1a;
+      --muted: #6c5b54;
+      --accent: #f06b42;
+      --accent-soft: rgba(240, 107, 66, 0.14);
+      --line-soft: rgba(42, 31, 26, 0.12);
+      --shadow: 0 24px 80px rgba(125, 66, 34, 0.16);
+      --radius: 28px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.65), transparent 38%),
+        linear-gradient(160deg, var(--bg-start), var(--bg-end));
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .blob {
+      position: fixed;
+      inset: auto;
+      width: 42vw;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      filter: blur(24px);
+      opacity: 0.45;
+      pointer-events: none;
+      animation: float 12s ease-in-out infinite;
+    }
+
+    .blob.one {
+      top: 8%;
+      left: -10%;
+      background: #ffe27a;
+    }
+
+    .blob.two {
+      right: -12%;
+      bottom: 10%;
+      background: #ff9d7a;
+      animation-delay: -5s;
+    }
+
+    .app {
+      width: min(100%, 440px);
+      background: var(--card);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px 22px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .journey {
+      position: relative;
+      margin-bottom: 24px;
+      padding: 18px 14px 22px;
+      background: rgba(255, 255, 255, 0.56);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      border-radius: 24px;
+      overflow: hidden;
+    }
+
+    .journey-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .place {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      width: 88px;
+      text-align: center;
+    }
+
+    .flag {
+      width: 58px;
+      height: 42px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 22px rgba(42, 31, 26, 0.12);
+      border: 1px solid rgba(42, 31, 26, 0.08);
+      background: #fff;
+      display: grid;
+      place-items: center;
+    }
+
+    .place-name {
+      font-size: 0.78rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .route {
+      position: relative;
+      margin: 0 18px;
+      height: 56px;
+    }
+
+    .route-line,
+    .route-progress {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      height: 6px;
+      border-radius: 999px;
+      transform: translateY(-50%);
+    }
+
+    .route-line {
+      width: 100%;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          var(--line-soft) 0 12px,
+          transparent 12px 20px
+        );
+    }
+
+    .route-progress {
+      width: 0;
+      background: linear-gradient(90deg, #ffb357, var(--accent));
+      box-shadow: 0 0 18px rgba(240, 107, 66, 0.28);
+    }
+
+    .plane {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translate(-50%, -50%);
+      font-size: 1.8rem;
+      line-height: 1;
+      filter: drop-shadow(0 8px 14px rgba(42, 31, 26, 0.18));
+    }
+
+    .journey-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .unit {
+      background: rgba(255, 255, 255, 0.72);
+      border-radius: 22px;
+      padding: 18px 14px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    }
+
+    .value {
+      display: block;
+      font-size: clamp(2rem, 10vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.06em;
+    }
+
+    .label {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.86rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .done {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: #fff0df;
+      color: #9a4528;
+      font-weight: 700;
+      text-align: center;
+      display: none;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      50% {
+        transform: translate3d(0, -18px, 0) scale(1.05);
+      }
+    }
+
+    @media (max-width: 380px) {
+      .app {
+        padding: 22px 16px;
+      }
+
+      .grid {
+        gap: 10px;
+      }
+
+      .unit {
+        padding: 16px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="blob one"></div>
+  <div class="blob two"></div>
+
+  <main class="app">
+    <div class="eyebrow">Cuenta atrás</div>
+
+    <section class="journey" aria-label="Trayecto del viaje">
+      <div class="journey-top">
+        <div class="place">
+          <div class="flag" aria-hidden="true">
+            <svg viewBox="0 0 58 42" width="58" height="42">
+              <rect width="58" height="42" fill="#ffffff"/>
+              <g transform="translate(29 21)">
+                <path d="M0-8a8 8 0 0 1 0 16a4 4 0 0 1 0-8a4 4 0 0 0 0-8z" fill="#cd2e3a"/>
+                <path d="M0 8a8 8 0 0 1 0-16a4 4 0 0 0 0 8a4 4 0 0 1 0 8z" fill="#0047a0"/>
+              </g>
+              <g fill="#111111">
+                <rect x="8" y="8" width="10" height="2" rx="1" transform="rotate(-28 13 9)"/>
+                <rect x="8" y="12" width="10" height="2" rx="1" transform="rotate(-28 13 13)"/>
+                <rect x="8" y="16" width="10" height="2" rx="1" transform="rotate(-28 13 17)"/>
+
+                <rect x="40" y="24" width="10" height="2" rx="1" transform="rotate(-28 45 25)"/>
+                <rect x="40" y="28" width="10" height="2" rx="1" transform="rotate(-28 45 29)"/>
+                <rect x="40" y="32" width="10" height="2" rx="1" transform="rotate(-28 45 33)"/>
+
+                <rect x="40" y="8" width="10" height="2" rx="1" transform="rotate(28 45 9)"/>
+                <rect x="42" y="12" width="6" height="2" rx="1" transform="rotate(28 45 13)"/>
+                <rect x="40" y="16" width="10" height="2" rx="1" transform="rotate(28 45 17)"/>
+
+                <rect x="8" y="24" width="10" height="2" rx="1" transform="rotate(28 13 25)"/>
+                <rect x="10" y="28" width="6" height="2" rx="1" transform="rotate(28 13 29)"/>
+                <rect x="8" y="32" width="10" height="2" rx="1" transform="rotate(28 13 33)"/>
+              </g>
+            </svg>
+          </div>
+          <div class="place-name">Corea del Sur</div>
+        </div>
+
+        <div class="place">
+          <div class="flag" aria-hidden="true">
+            <svg viewBox="0 0 58 42" width="58" height="42">
+              <rect width="58" height="42" fill="#aa151b"/>
+              <rect y="10.5" width="58" height="21" fill="#f1bf00"/>
+              <g transform="translate(14 21)">
+                <rect x="-4" y="-7" width="8" height="14" rx="2" fill="#aa151b"/>
+                <rect x="-3" y="-5" width="6" height="10" rx="1.5" fill="#f1bf00"/>
+                <rect x="-1.5" y="-3.5" width="3" height="7" rx="1" fill="#aa151b"/>
+                <circle cx="0" cy="-1.5" r="1.1" fill="#aa151b"/>
+              </g>
+            </svg>
+          </div>
+          <div class="place-name">España</div>
+        </div>
+      </div>
+
+      <div class="route" aria-hidden="true">
+        <div class="route-line"></div>
+        <div class="route-progress" id="route-progress"></div>
+        <div class="plane" id="plane">✈</div>
+      </div>
+
+      <div class="journey-meta">
+        <span id="progress-text">0% del trayecto</span>
+        <span id="days-left">14 días por delante</span>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Cuenta atrás">
+      <article class="unit">
+        <span class="value" id="days">0</span>
+        <span class="label">Días</span>
+      </article>
+      <article class="unit">
+        <span class="value" id="hours">0</span>
+        <span class="label">Horas</span>
+      </article>
+      <article class="unit">
+        <span class="value" id="minutes">0</span>
+        <span class="label">Minutos</span>
+      </article>
+      <article class="unit">
+        <span class="value" id="seconds">0</span>
+        <span class="label">Segundos</span>
+      </article>
+    </section>
+
+    <div class="done" id="done">La fecha ya ha llegado.</div>
+  </main>
+
+  <script>
+    const startDate = new Date("2026-08-05T00:00:00");
+    const targetDate = new Date("2026-08-19T23:59:59");
+    const elements = {
+      days: document.getElementById("days"),
+      hours: document.getElementById("hours"),
+      minutes: document.getElementById("minutes"),
+      seconds: document.getElementById("seconds"),
+      done: document.getElementById("done"),
+      routeProgress: document.getElementById("route-progress"),
+      plane: document.getElementById("plane"),
+      progressText: document.getElementById("progress-text"),
+      daysLeft: document.getElementById("days-left")
+    };
+
+    function pad(value) {
+      return String(value).padStart(2, "0");
+    }
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+      const totalTrip = targetDate - startDate;
+      const elapsed = now - startDate;
+      const progress = Math.min(Math.max(elapsed / totalTrip, 0), 1);
+      const progressPercent = Math.round(progress * 100);
+
+      elements.routeProgress.style.width = `${progressPercent}%`;
+      elements.plane.style.left = `${progressPercent}%`;
+      elements.progressText.textContent = `${progressPercent}% del trayecto`;
+
+      if (diff <= 0) {
+        elements.days.textContent = "00";
+        elements.hours.textContent = "00";
+        elements.minutes.textContent = "00";
+        elements.seconds.textContent = "00";
+        elements.done.style.display = "block";
+        elements.routeProgress.style.width = "100%";
+        elements.plane.style.left = "100%";
+        elements.progressText.textContent = "100% del trayecto";
+        elements.daysLeft.textContent = "Has llegado a destino";
+        return;
+      }
+
+      const totalSeconds = Math.floor(diff / 1000);
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      elements.days.textContent = pad(days);
+      elements.hours.textContent = pad(hours);
+      elements.minutes.textContent = pad(minutes);
+      elements.seconds.textContent = pad(seconds);
+      elements.daysLeft.textContent = `${days} días por delante`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
