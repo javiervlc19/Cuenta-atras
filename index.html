@@ -307,28 +307,59 @@
 
     .phrase-button {
       width: 100%;
+      position: relative;
       border: 0;
-      border-radius: 18px;
-      padding: 16px 18px;
-      background: linear-gradient(135deg, #ff8456, #ffb36d);
-      color: #ffffff;
-      font-size: 0.96rem;
+      border-radius: 22px;
+      padding: 18px 54px 18px 34px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(243, 247, 255, 0.94));
+      color: #233455;
+      font: inherit;
+      font-size: 0.95rem;
       font-weight: 800;
       letter-spacing: 0.02em;
-      box-shadow: 0 14px 28px rgba(255, 122, 69, 0.22);
+      text-align: left;
+      border: 1px solid rgba(210, 221, 241, 0.92);
+      box-shadow:
+        0 16px 34px rgba(83, 103, 145, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
       cursor: pointer;
+    }
+
+    .phrase-button::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      width: 4px;
+      height: 30px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #ff8456, #ffb36d);
+      transform: translateY(-50%);
+    }
+
+    .phrase-button::after {
+      content: "›";
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(35, 52, 85, 0.5);
+      font-size: 1.4rem;
+      line-height: 1;
     }
 
     .phrase-box {
       display: none;
       margin-top: 12px;
       padding: 18px 16px;
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.72);
-      border: 1px solid rgba(255, 255, 255, 0.55);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(247, 250, 255, 0.82));
+      border: 1px solid rgba(219, 228, 245, 0.95);
       color: var(--text);
       text-align: center;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+      box-shadow:
+        0 18px 40px rgba(83, 103, 145, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
     }
 
     .phrase-box.is-visible {
@@ -436,28 +467,43 @@
     .planner-toggle {
       width: 100%;
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       border: 0;
-      border-radius: 18px;
-      padding: 16px 18px;
-      background: linear-gradient(135deg, #77bfff, #5f93ff);
-      color: #ffffff;
+      border-radius: 22px;
+      padding: 18px 54px 18px 34px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(243, 247, 255, 0.94));
+      color: #233455;
       font: inherit;
-      font-size: 0.96rem;
+      font-size: 0.95rem;
       font-weight: 800;
       letter-spacing: 0.02em;
-      box-shadow: 0 14px 28px rgba(95, 147, 255, 0.22);
+      text-align: left;
+      border: 1px solid rgba(210, 221, 241, 0.92);
+      box-shadow:
+        0 16px 34px rgba(83, 103, 145, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
       cursor: pointer;
+    }
+
+    .planner-toggle::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      width: 4px;
+      height: 30px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #68b4ff, #5f93ff);
+      transform: translateY(-50%);
     }
 
     .planner-toggle::after {
       content: "+";
       position: absolute;
-      right: 18px;
-      color: currentColor;
-      font-size: 1.2rem;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(35, 52, 85, 0.7);
+      font-size: 1.3rem;
       line-height: 1;
     }
 
@@ -467,12 +513,14 @@
 
     .planner-content {
       display: none;
-      margin-top: 14px;
-      padding: 16px;
+      margin-top: 12px;
+      padding: 18px 16px;
       border-radius: 24px;
-      background: rgba(255, 255, 255, 0.68);
-      border: 1px solid rgba(255, 255, 255, 0.55);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(247, 250, 255, 0.82));
+      border: 1px solid rgba(219, 228, 245, 0.95);
+      box-shadow:
+        0 18px 40px rgba(83, 103, 145, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
     }
 
     .planner.is-open .planner-content {
@@ -606,28 +654,43 @@
     .photo-toggle {
       width: 100%;
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       border: 0;
-      border-radius: 18px;
-      padding: 16px 18px;
-      background: linear-gradient(135deg, #243b63, #3c5f98);
-      color: #ffffff;
+      border-radius: 22px;
+      padding: 18px 54px 18px 34px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(243, 247, 255, 0.94));
+      color: #233455;
       font: inherit;
-      font-size: 0.96rem;
+      font-size: 0.95rem;
       font-weight: 800;
       letter-spacing: 0.02em;
-      box-shadow: 0 14px 28px rgba(36, 59, 99, 0.22);
+      text-align: left;
+      border: 1px solid rgba(210, 221, 241, 0.92);
+      box-shadow:
+        0 16px 34px rgba(83, 103, 145, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
       cursor: pointer;
+    }
+
+    .photo-toggle::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      width: 4px;
+      height: 30px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #355a97, #243b63);
+      transform: translateY(-50%);
     }
 
     .photo-toggle::after {
       content: "+";
       position: absolute;
-      right: 18px;
-      color: currentColor;
-      font-size: 1.2rem;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(35, 52, 85, 0.7);
+      font-size: 1.3rem;
       line-height: 1;
     }
 
@@ -637,12 +700,14 @@
 
     .photo-content {
       display: none;
-      margin-top: 14px;
-      padding: 16px;
+      margin-top: 12px;
+      padding: 18px 16px;
       border-radius: 24px;
-      background: rgba(255, 255, 255, 0.68);
-      border: 1px solid rgba(255, 255, 255, 0.55);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(247, 250, 255, 0.82));
+      border: 1px solid rgba(219, 228, 245, 0.95);
+      box-shadow:
+        0 18px 40px rgba(83, 103, 145, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
     }
 
     .photo-title {
@@ -1017,7 +1082,7 @@
         <p class="phrase-text" id="phrase-text"></p>
         <form class="phrase-form" id="phrase-form">
           <input class="phrase-input" id="phrase-person-one" type="text" maxlength="160" placeholder="Frase de Nuria">
-          <input class="phrase-input" id="phrase-person-two" type="text" maxlength="160" placeholder="Frase de Javi">
+          <input class="phrase-input" id="phrase-person-two" type="text" maxlength="160" placeholder="Frase de Javier">
           <button class="phrase-save" type="submit">Guardar frases de hoy</button>
         </form>
         <p class="phrase-status" id="phrase-status"></p>
@@ -1030,8 +1095,8 @@
       <div class="planner-content" id="planner-content">
         <p class="planner-subtitle">Escribe un plan y una comida que te gustaría hacer en el futuro.</p>
         <form class="planner-form" id="planner-form">
-          <input class="planner-input" id="plan-input" type="text" maxlength="120" placeholder="Plan de hoy">
-          <input class="planner-input" id="food-input" type="text" maxlength="120" placeholder="Comida de hoy">
+          <input class="planner-input" id="plan-input" type="text" maxlength="120" placeholder="Plan">
+          <input class="planner-input" id="food-input" type="text" maxlength="120" placeholder="Comida">
           <div class="planner-actions">
             <button class="planner-save" id="planner-save" type="submit">Guardar día</button>
             <button class="planner-mini edit" id="planner-cancel" type="button" hidden>Cancelar</button>
@@ -1231,7 +1296,7 @@
         blocks.push(`<div class="phrase-saved-item"><p class="phrase-saved-name">Nuria</p><p class="phrase-saved-text">${escapeHtml(saved.nuria)}</p><div class="phrase-item-actions"><button class="planner-mini edit" type="button" data-action="edit-phrase" data-person="nuria">Editar</button><button class="planner-mini delete" type="button" data-action="delete-phrase" data-person="nuria">Borrar</button></div></div>`);
       }
       if (saved.javi) {
-        blocks.push(`<div class="phrase-saved-item"><p class="phrase-saved-name">Javi</p><p class="phrase-saved-text">${escapeHtml(saved.javi)}</p><div class="phrase-item-actions"><button class="planner-mini edit" type="button" data-action="edit-phrase" data-person="javi">Editar</button><button class="planner-mini delete" type="button" data-action="delete-phrase" data-person="javi">Borrar</button></div></div>`);
+        blocks.push(`<div class="phrase-saved-item"><p class="phrase-saved-name">Javier</p><p class="phrase-saved-text">${escapeHtml(saved.javi)}</p><div class="phrase-item-actions"><button class="planner-mini edit" type="button" data-action="edit-phrase" data-person="javi">Editar</button><button class="planner-mini delete" type="button" data-action="delete-phrase" data-person="javi">Borrar</button></div></div>`);
       }
       elements.phraseSaved.innerHTML = blocks.join("");
     }
