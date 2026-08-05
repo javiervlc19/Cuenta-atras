@@ -326,15 +326,7 @@
     }
 
     .phrase-button::before {
-      content: "";
-      position: absolute;
-      left: 18px;
-      top: 50%;
-      width: 4px;
-      height: 30px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, #ff8456, #ffb36d);
-      transform: translateY(-50%);
+      display: none;
     }
 
     .phrase-button::after {
@@ -485,15 +477,7 @@
     }
 
     .planner-toggle::before {
-      content: "";
-      position: absolute;
-      left: 18px;
-      top: 50%;
-      width: 4px;
-      height: 30px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, #68b4ff, #5f93ff);
-      transform: translateY(-50%);
+      display: none;
     }
 
     .planner-toggle::after {
@@ -672,15 +656,7 @@
     }
 
     .photo-toggle::before {
-      content: "";
-      position: absolute;
-      left: 18px;
-      top: 50%;
-      width: 4px;
-      height: 30px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, #355a97, #243b63);
-      transform: translateY(-50%);
+      display: none;
     }
 
     .photo-toggle::after {
@@ -978,6 +954,1988 @@
         font-size: 1.1rem;
       }
     }
+
+    .app-shell {
+      padding-bottom: 118px;
+      background: rgba(255, 255, 255, 0.78);
+    }
+
+    .mobile-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      padding: 4px 4px 0;
+    }
+
+    .device-time {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: #18274a;
+    }
+
+    .device-icons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #111827;
+    }
+
+    .bars {
+      display: inline-flex;
+      align-items: end;
+      gap: 3px;
+      height: 18px;
+    }
+
+    .bars i {
+      display: block;
+      width: 5px;
+      border-radius: 999px;
+      background: currentColor;
+    }
+
+    .bars i:nth-child(1) { height: 8px; }
+    .bars i:nth-child(2) { height: 11px; }
+    .bars i:nth-child(3) { height: 14px; }
+    .bars i:nth-child(4) { height: 17px; }
+
+    .wifi {
+      width: 18px;
+      height: 18px;
+      border: 3px solid transparent;
+      border-top-color: currentColor;
+      border-radius: 50%;
+      transform: rotate(45deg);
+      position: relative;
+    }
+
+    .wifi::after {
+      content: "";
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: currentColor;
+      border-radius: 50%;
+      top: -1px;
+      left: 4px;
+      transform: rotate(-45deg);
+    }
+
+    .battery {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 42px;
+      height: 28px;
+      border-radius: 9px;
+      background: #111827;
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 800;
+      position: relative;
+      padding: 0 8px;
+    }
+
+    .battery::after {
+      content: "";
+      position: absolute;
+      right: -4px;
+      width: 4px;
+      height: 12px;
+      border-radius: 0 4px 4px 0;
+      background: rgba(17, 24, 39, 0.45);
+    }
+
+    .hero-intro {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      margin: 0;
+      font-size: clamp(2rem, 6vw, 2.45rem);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+      color: #18274a;
+    }
+
+    .hero-subtitle {
+      margin: 8px 0 0;
+      font-size: 1rem;
+      color: #7483a0;
+    }
+
+    .menu-badge {
+      width: 74px;
+      height: 74px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 16px 30px rgba(79, 97, 137, 0.16);
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      flex: 0 0 auto;
+    }
+
+    .menu-badge span {
+      width: 24px;
+      height: 3px;
+      border-radius: 999px;
+      background: #243b63;
+    }
+
+    .journey {
+      padding: 118px 18px 20px;
+      border-radius: 32px;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(42, 68, 110, 0.24), rgba(255, 138, 89, 0.22)),
+        linear-gradient(180deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.18) 100%),
+        url("https://images.unsplash.com/photo-1538485399081-7c8971ec7cbd?auto=format&fit=crop&w=900&q=80") left center / 58% 100% no-repeat,
+        url("https://images.unsplash.com/photo-1518638150340-f706e86654de?auto=format&fit=crop&w=900&q=80") right center / 58% 100% no-repeat;
+      box-shadow: 0 24px 48px rgba(74, 93, 133, 0.18);
+      margin-bottom: 22px;
+    }
+
+    .journey-top {
+      position: relative;
+      z-index: 1;
+      gap: 0;
+      margin: 0;
+      padding: 28px 22px 22px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 16px 36px rgba(64, 84, 123, 0.14);
+    }
+
+    .place {
+      width: calc(50% - 34px);
+      padding: 0;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      gap: 14px;
+    }
+
+    .place:first-child {
+      padding-right: 16px;
+      border-right: 1px dashed rgba(119, 133, 167, 0.34);
+    }
+
+    .place:last-child {
+      padding-left: 16px;
+    }
+
+    .place-time {
+      order: 3;
+      width: auto;
+      min-width: 136px;
+      padding: 12px 20px;
+      border-radius: 999px;
+      font-size: 1.1rem;
+      background: linear-gradient(180deg, #233456, #1b2a45);
+      box-shadow: 0 12px 24px rgba(23, 36, 59, 0.2);
+    }
+
+    .flag.hero-flag,
+    .journey-top .flag {
+      width: 126px;
+      height: 92px;
+      border-radius: 22px;
+      box-shadow: 0 14px 26px rgba(82, 94, 124, 0.12);
+    }
+
+    .place-name {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      color: #24385f;
+      order: 1;
+    }
+
+    .journey-top::after {
+      content: "✈";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2.25rem;
+      color: #1f2f4c;
+    }
+
+    .board-chip {
+      display: none;
+    }
+
+    .route {
+      position: relative;
+      height: 88px;
+      margin: 0;
+    }
+
+    .journey > .route {
+      margin: 18px 8px 10px;
+    }
+
+    .route-line,
+    .route-progress {
+      top: 44px;
+      height: 4px;
+      background-size: auto;
+      transform: none;
+      border-radius: 999px;
+    }
+
+    .route-line {
+      background: repeating-linear-gradient(90deg, rgba(143, 157, 186, 0.56) 0 4px, transparent 4px 12px);
+    }
+
+    .route-progress {
+      background: linear-gradient(90deg, #7fbef5, #ff9d62);
+      box-shadow: none;
+    }
+
+    .plane {
+      top: 28px;
+      font-size: 2rem;
+      filter: drop-shadow(0 10px 18px rgba(34, 46, 71, 0.18));
+    }
+
+    .journey-meta {
+      margin-top: 6px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .journey-stat {
+      padding: 14px 8px 12px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(224, 232, 246, 0.9);
+      box-shadow: 0 10px 22px rgba(84, 102, 139, 0.08);
+    }
+
+    .journey-stat .value {
+      font-size: 2rem;
+      color: #1a2a49;
+    }
+
+    .journey-stat .label {
+      margin-top: 8px;
+      font-size: 0.72rem;
+      color: #707f9d;
+    }
+
+    .song-card.spotify-premium,
+    .song-card {
+      position: relative;
+      grid-template-columns: 116px 1fr 58px;
+      gap: 18px;
+      padding: 18px;
+      background: linear-gradient(135deg, #1b2346, #41335b 60%, #7a4f58);
+      border: 0;
+      border-radius: 30px;
+      color: #ffffff;
+      box-shadow: 0 24px 46px rgba(53, 50, 86, 0.2);
+    }
+
+    .song-cover {
+      width: 116px;
+      border-radius: 22px;
+    }
+
+    .song-cover-wrap {
+      position: relative;
+      width: 116px;
+      height: 116px;
+    }
+
+    .spotify-badge {
+      position: absolute;
+      left: 8px;
+      bottom: 8px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #1ed760;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 8px 16px rgba(20, 110, 56, 0.28);
+    }
+
+    .spotify-badge::before {
+      content: "";
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, transparent 0 5px, #0d2b1a 5px 100%),
+        linear-gradient(#0d2b1a 0 0) center 4px / 10px 1.5px no-repeat,
+        linear-gradient(#0d2b1a 0 0) center 7px / 12px 1.5px no-repeat,
+        linear-gradient(#0d2b1a 0 0) center 10px / 9px 1.5px no-repeat;
+    }
+
+    .song-kicker {
+      color: #50d07d;
+      letter-spacing: 0.08em;
+    }
+
+    .song-title {
+      color: #ffffff;
+      font-size: 1.1rem;
+    }
+
+    .song-link {
+      color: #57d785;
+      font-weight: 800;
+    }
+
+    .song-play {
+      align-self: center;
+      justify-self: end;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.28);
+      background: rgba(255, 255, 255, 0.08);
+      position: relative;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    }
+
+    .song-play::before {
+      content: "";
+      position: absolute;
+      left: 22px;
+      top: 18px;
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 16px solid #ffffff;
+    }
+
+    .spotify-play {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.24);
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+      color: #ffffff;
+      justify-self: end;
+    }
+
+    .spaces-intro {
+      display: flex;
+      align-items: start;
+      gap: 10px;
+      margin: 8px 4px 12px;
+    }
+
+    .spaces-mark {
+      font-size: 1.1rem;
+      color: #111827;
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    .spaces-title {
+      margin: 0;
+      font-size: 1.1rem;
+      letter-spacing: -0.03em;
+      color: #1c2b4b;
+      line-height: 1.05;
+    }
+
+    .spaces-subtitle {
+      margin: 6px 0 0;
+      color: #72809c;
+      font-size: 0.72rem;
+      line-height: 1.35;
+    }
+
+    .spaces-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .spaces-grid > section {
+      min-width: 0;
+    }
+
+    .spaces-grid > section.is-open,
+    .spaces-grid > .phrase-wrap.is-open {
+      grid-column: 1 / -1;
+    }
+
+    .phrase-wrap,
+    .planner,
+    .photo-diary {
+      margin: 0;
+    }
+
+    .phrase-button,
+    .planner-toggle,
+    .photo-toggle {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 14px;
+      min-height: 148px;
+      padding: 18px 18px 16px;
+      border-radius: 24px;
+      border: 1px solid rgba(228, 234, 245, 0.92);
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,255,0.92));
+      box-shadow: 0 14px 28px rgba(79, 97, 137, 0.08);
+      text-align: left;
+      color: #223352;
+    }
+
+    .space-card-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 62px;
+      height: 62px;
+      border-radius: 18px;
+      font-size: 0;
+      line-height: 1;
+      color: transparent;
+      background: rgba(255,255,255,0.96);
+      box-shadow: 0 10px 18px rgba(96, 111, 143, 0.1);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 30px 30px;
+    }
+
+    .space-card-icon.phrase {
+      color: transparent;
+      background-image: url("./icono frase.jpg");
+      background-size: 30px 30px;
+    }
+
+    .space-card-icon.planner {
+      color: transparent;
+      font-size: 0;
+      background-image: url("./icono diario.jpg");
+      background-size: 30px 30px;
+    }
+
+    .space-card-icon.photo {
+      color: transparent;
+      font-size: 0;
+      background-image: url("./icono fotos.jpg");
+      background-size: 30px 30px;
+    }
+
+    .space-card-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: auto;
+      padding-right: 22px;
+    }
+
+    .space-card-title {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #1d2d4a;
+      line-height: 1.15;
+    }
+
+    .space-card-subtitle {
+      display: none;
+    }
+
+    .space-card-arrow {
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      font-size: 0;
+      color: transparent;
+      line-height: 1;
+      overflow: hidden;
+      text-indent: -9999px;
+      white-space: nowrap;
+    }
+
+    .space-card-arrow::before {
+      content: "›";
+      display: block;
+      font-size: 2rem;
+      color: #8a97b1;
+      line-height: 0.9;
+    }
+
+    .phrase-box,
+    .planner-content,
+    .photo-content {
+      margin-top: 12px;
+      padding: 18px 16px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(223, 231, 245, 0.96);
+      box-shadow: 0 18px 36px rgba(79, 97, 137, 0.08);
+    }
+
+    .bottom-nav {
+      display: none;
+    }
+
+    @media (max-width: 420px) {
+      .spaces-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .phrase-button,
+      .planner-toggle,
+      .photo-toggle {
+        min-height: 146px;
+        padding: 16px 14px 14px;
+      }
+
+      .space-card-icon {
+        width: 50px;
+        height: 50px;
+      }
+
+      .space-card-title {
+        font-size: 0.86rem;
+      }
+
+      .space-card-subtitle {
+        font-size: 0.72rem;
+      }
+    }
+
+    .mobile-top,
+    .hero-intro {
+      display: none;
+    }
+
+    .app-shell {
+      padding-top: 18px;
+    }
+
+    .journey {
+      padding: 26px 26px 22px;
+      border-radius: 30px;
+      background:
+        linear-gradient(90deg, rgba(63, 97, 150, 0.14), rgba(255, 162, 118, 0.16)),
+        url("./Golden-Sunset-Over-Seoul-Urban-Nightscape-Seoul-Korea-1024x683.jpg") left center / 50% 100% no-repeat,
+        url("./catedral-vieja-valencia-plaza-virgen.webp") right center / 50% 100% no-repeat;
+      box-shadow: 0 22px 46px rgba(74, 93, 133, 0.16);
+      margin-bottom: 28px;
+    }
+
+    .journey::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.08));
+      pointer-events: none;
+    }
+
+    .journey-top {
+      position: relative;
+      margin: 0;
+      padding: 28px 24px 24px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 16px 34px rgba(77, 95, 132, 0.16);
+      backdrop-filter: blur(8px);
+    }
+
+    .journey-top::before,
+    .journey-top::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: rgba(170, 174, 187, 0.9);
+    }
+
+    .journey-top::before { top: -7px; }
+    .journey-top::after { bottom: -7px; }
+
+    .journey .ticket-plane {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2rem;
+      color: #223455;
+      line-height: 1;
+      z-index: 2;
+    }
+
+    .journey-top .place {
+      padding: 0 10px;
+      gap: 14px;
+    }
+
+    .journey-top .place:first-child {
+      border-right: 1px dashed rgba(121, 135, 165, 0.28);
+    }
+
+    .journey-top .place:last-child {
+      padding-left: 22px;
+      width: calc(50% - 22px);
+    }
+
+    .journey-top .place:first-child {
+      padding-right: 22px;
+      width: calc(50% - 22px);
+    }
+
+    .journey-top .flag {
+      width: 124px;
+      height: 86px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.98);
+    }
+
+    .journey-top .place-time {
+      min-width: 136px;
+      padding: 10px 18px;
+      font-size: 1.04rem;
+      position: relative;
+    }
+
+    .journey-top .place-name {
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
+      margin-bottom: 0;
+    }
+
+    .journey-top .place-time::after {
+      content: "Hora local";
+      position: absolute;
+      left: 50%;
+      top: calc(100% + 14px);
+      transform: translateX(-50%);
+      color: #7d89a3;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .journey-top::selection {
+      background: transparent;
+    }
+
+    .board-chip,
+    .journey > .route,
+    .journey > .journey-meta {
+      display: none;
+    }
+
+    .hero-favorite {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.92);
+      color: #233455;
+      font-size: 1.3rem;
+      box-shadow: 0 10px 18px rgba(79, 97, 137, 0.14);
+    }
+
+    .travel-card {
+      margin-bottom: 26px;
+      padding: 20px 20px 18px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.9);
+      border: 1px solid rgba(255,255,255,0.75);
+      box-shadow: 0 22px 46px rgba(74, 93, 133, 0.14);
+    }
+
+    .travel-card-title {
+      margin: 0 0 12px;
+      font-size: 0.92rem;
+      line-height: 1.2;
+      color: #1f2f4c;
+    }
+
+    .travel-date {
+      margin: 0 0 18px;
+      color: #8390a8;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .travel-date::before {
+      content: "📅";
+      font-size: 0.95rem;
+    }
+
+    .travel-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .travel-column {
+      min-width: 0;
+    }
+
+    .route-column {
+      border-left: 1px dashed rgba(133, 147, 177, 0.32);
+      padding-left: 22px;
+    }
+
+    .travel-meta {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .travel-stat {
+      padding: 15px 6px 12px;
+      border-radius: 16px;
+      background: #ffffff;
+      border: 1px solid rgba(229, 234, 244, 0.96);
+      text-align: center;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+
+    .travel-value {
+      display: block;
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: #1b2b49;
+      letter-spacing: -0.04em;
+    }
+
+    .travel-label {
+      display: block;
+      margin-top: 6px;
+      font-size: 0.62rem;
+      color: #7d89a3;
+      letter-spacing: 0.08em;
+    }
+
+    .route-graphic {
+      position: relative;
+      height: 84px;
+      margin-top: 2px;
+    }
+
+    .route-arc {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 18px;
+      height: 58px;
+      border-top: 2px dashed rgba(126, 143, 177, 0.46);
+      border-radius: 50% 50% 0 0;
+    }
+
+    .route-arc-plane {
+      position: absolute;
+      left: 50%;
+      top: 4px;
+      transform: translateX(-50%);
+      font-size: 1.62rem;
+      color: #1f2f4c;
+    }
+
+    .route-stops {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-top: 0;
+    }
+
+    .route-stop {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      font-size: 0.8rem;
+      color: #657590;
+      position: relative;
+      padding-top: 16px;
+    }
+
+    .route-stop strong {
+      color: #1f2f4c;
+      font-size: 1rem;
+    }
+
+    .route-stop.align-right {
+      text-align: right;
+      align-items: flex-end;
+    }
+
+    .route-stop-dot {
+      position: absolute;
+      top: 0;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+
+    .route-stop-dot.seoul {
+      left: 0;
+      background: #5eb1f7;
+    }
+
+    .route-stop-dot.madrid {
+      right: 0;
+      background: #ff9c4c;
+    }
+
+    .travel-cta {
+      grid-column: 1 / -1;
+      border: 0;
+      border-radius: 22px;
+      padding: 18px 20px;
+      background: linear-gradient(180deg, #1f3154, #1a2946);
+      color: #ffffff;
+      font: inherit;
+      font-weight: 800;
+      box-shadow: 0 16px 28px rgba(30, 44, 71, 0.18);
+    }
+
+    .song-card {
+      position: relative;
+      grid-template-columns: 116px 1fr 56px;
+      border-radius: 30px;
+      padding: 18px;
+      background: linear-gradient(135deg, #1b2346, #41335b 60%, #7a4f58);
+      color: #ffffff;
+      border: 0;
+      box-shadow: 0 22px 42px rgba(53, 50, 86, 0.2);
+    }
+
+    .song-cover {
+      width: 116px;
+      border-radius: 22px;
+    }
+
+    .song-card::before {
+      content: "";
+      position: absolute;
+      left: 28px;
+      bottom: 28px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: url("./icono spotufy.jpg") center / cover no-repeat;
+      box-shadow: 0 8px 16px rgba(20, 110, 56, 0.28);
+      z-index: 2;
+    }
+
+    .song-card::after {
+      content: "";
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      width: 58px;
+      height: 58px;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      background: url("./icono play.jpg") center / cover no-repeat;
+      z-index: 1;
+    }
+
+    .song-kicker {
+      color: #57d785;
+    }
+
+    .song-title {
+      color: #ffffff;
+      font-size: 1.08rem;
+    }
+
+    .song-link {
+      color: #57d785;
+      font-weight: 800;
+    }
+
+    @media (max-width: 420px) {
+      .travel-card {
+        grid-template-columns: 1fr;
+      }
+
+      .route-column {
+        border-left: 0;
+        border-top: 1px dashed rgba(133, 147, 177, 0.32);
+        padding-left: 0;
+        padding-top: 16px;
+      }
+    }
+
+    .journey {
+      position: relative;
+      min-height: 360px;
+      padding: 30px 22px 22px;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(63, 97, 150, 0.12), rgba(255, 162, 118, 0.12)),
+        url("./Golden-Sunset-Over-Seoul-Urban-Nightscape-Seoul-Korea-1024x683.jpg") left center / 50% 100% no-repeat,
+        url("./catedral-vieja-valencia-plaza-virgen.webp") right center / 50% 100% no-repeat;
+    }
+
+    .journey-top {
+      position: absolute;
+      left: 50%;
+      bottom: 48px;
+      transform: translateX(-50%);
+      width: calc(100% - 56px);
+      margin: 0;
+      padding: 30px 20px 30px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 20px 38px rgba(77, 95, 132, 0.18);
+      backdrop-filter: blur(10px);
+      z-index: 2;
+    }
+
+    .journey-top::before,
+    .journey-top::after {
+      width: 18px;
+      height: 18px;
+      background: #babfcd;
+      z-index: 3;
+    }
+
+    .journey-top::before { top: -9px; }
+    .journey-top::after { bottom: -9px; }
+
+    .journey .ticket-plane {
+      top: 50%;
+      font-size: 2.2rem;
+      z-index: 4;
+      text-shadow: 0 8px 18px rgba(35, 52, 85, 0.12);
+    }
+
+    .journey-top .place {
+      width: calc(50% - 16px);
+      padding: 0 8px;
+      gap: 12px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .journey-top .place:first-child {
+      padding-right: 22px;
+      border-right: 1px dashed rgba(121, 135, 165, 0.28);
+    }
+
+    .journey-top .place:last-child {
+      padding-left: 22px;
+    }
+
+    .journey-top .flag {
+      width: 118px;
+      height: 84px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.98);
+      border: 1px solid rgba(227, 232, 241, 0.95);
+      box-shadow: 0 16px 28px rgba(63, 76, 107, 0.08), inset 0 1px 0 rgba(255,255,255,0.96);
+    }
+
+    .journey-top .flag svg {
+      width: 72px;
+      height: 52px;
+    }
+
+    .journey-top .place-time {
+      width: 138px;
+      min-width: 138px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #24375d, #1f3154);
+      color: #ffffff;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 1.02rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      box-shadow: 0 14px 24px rgba(35, 52, 85, 0.18);
+    }
+
+    .journey-top .place-time::after {
+      top: calc(100% + 12px);
+      font-size: 0.78rem;
+    }
+
+    .journey-top .place-name {
+      margin-bottom: 2px;
+      color: #22365e;
+      font-size: 0.77rem;
+    }
+
+    .hero-favorite {
+      top: 16px;
+      right: 16px;
+      width: 40px;
+      height: 40px;
+      font-size: 1.18rem;
+      z-index: 3;
+    }
+
+    .travel-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      padding: 22px 18px 18px;
+    }
+
+    .travel-card-title {
+      min-height: 50px;
+      margin: 0 0 14px;
+      display: flex;
+      align-items: flex-start;
+      font-size: 0.98rem;
+    }
+
+    .travel-date::before {
+      content: "📅";
+    }
+
+    .route-column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .travel-meta {
+      gap: 10px;
+    }
+
+    .travel-stat {
+      min-height: 104px;
+      padding: 16px 4px 12px;
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 8px 16px rgba(72, 89, 122, 0.04);
+    }
+
+    .travel-value {
+      font-size: 1.18rem;
+    }
+
+    .travel-label {
+      margin-top: 8px;
+      font-size: 0.68rem;
+    }
+
+    .route-graphic {
+      height: 112px;
+      margin-bottom: 4px;
+    }
+
+    .route-arc {
+      top: 18px;
+      bottom: auto;
+      height: 74px;
+    }
+
+    .route-arc-plane {
+      top: 20px;
+      transform: translate(-50%, -50%);
+      font-size: 1.7rem;
+      transition: left 0.6s ease, top 0.6s ease;
+    }
+
+    .route-stops {
+      margin-top: auto;
+    }
+
+    .route-stop strong {
+      font-size: 1.05rem;
+    }
+
+    .route-stop-dot {
+      width: 13px;
+      height: 13px;
+    }
+
+    @media (max-width: 420px) {
+      .journey {
+        min-height: 352px;
+        padding: 26px 16px 18px;
+      }
+
+      .journey-top {
+        width: calc(100% - 42px);
+        bottom: 44px;
+        padding: 26px 14px 28px;
+      }
+
+      .journey-top .place {
+        width: calc(50% - 10px);
+        padding: 0 4px;
+      }
+
+      .journey-top .place:first-child {
+        padding-right: 14px;
+      }
+
+      .journey-top .place:last-child {
+        padding-left: 14px;
+      }
+
+      .journey-top .flag {
+        width: 104px;
+        height: 76px;
+      }
+
+      .journey-top .place-time {
+        width: 126px;
+        min-width: 126px;
+        padding: 12px 14px;
+        font-size: 0.96rem;
+      }
+
+      .travel-card {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        padding: 20px 14px 16px;
+      }
+
+      .travel-card-title {
+        min-height: 44px;
+      }
+
+      .travel-meta {
+        gap: 8px;
+      }
+
+      .travel-stat {
+        min-height: 96px;
+      }
+    }
+
+    .journey {
+      min-height: 344px;
+      padding: 18px 18px 20px;
+      border-radius: 30px;
+      background:
+        linear-gradient(90deg, rgba(31, 49, 84, 0.06), rgba(255, 185, 133, 0.08)),
+        url("./Golden-Sunset-Over-Seoul-Urban-Nightscape-Seoul-Korea-1024x683.jpg") left center / 50% 100% no-repeat,
+        url("./catedral-vieja-valencia-plaza-virgen.webp") right center / 50% 100% no-repeat;
+      box-shadow: 0 18px 42px rgba(74, 93, 133, 0.14);
+    }
+
+    .journey::before {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+    }
+
+    .journey-top {
+      left: 50%;
+      bottom: 32px;
+      width: min(352px, calc(100% - 58px));
+      min-height: 196px;
+      padding: 18px 18px 28px;
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 18px 34px rgba(77, 95, 132, 0.16);
+      align-items: stretch;
+    }
+
+    .journey-top::before,
+    .journey-top::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #b9bfcb;
+      z-index: 4;
+    }
+
+    .journey-top::before { top: -8px; }
+    .journey-top::after { bottom: -8px; }
+
+    .journey-top .place {
+      width: calc(50% - 10px);
+      padding: 0 8px;
+      gap: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: center;
+    }
+
+    .journey-top .place:first-child {
+      padding-right: 18px;
+      border-right: 1px dashed rgba(189, 198, 216, 0.92);
+    }
+
+    .journey-top .place:last-child {
+      padding-left: 18px;
+    }
+
+    .journey-top .place-name {
+      order: 1;
+      min-height: 30px;
+      margin: 0;
+      color: #20345a;
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      line-height: 1.15;
+      text-transform: uppercase;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .journey-top .flag {
+      order: 2;
+      width: 96px;
+      height: 66px;
+      border-radius: 18px;
+      background: #ffffff;
+      border: 1px solid rgba(233, 238, 246, 0.96);
+      box-shadow:
+        0 10px 20px rgba(88, 104, 134, 0.08),
+        inset 0 1px 0 rgba(255,255,255,0.95);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .journey-top .flag svg {
+      display: none;
+    }
+
+    .journey-top .place:first-child .flag::before,
+    .journey-top .place:last-child .flag::before {
+      content: "";
+      position: absolute;
+      inset: 9px 12px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    .journey-top .place:first-child .flag::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 74 54'%3E%3Crect width='74' height='54' rx='10' fill='%23fff'/%3E%3Cg transform='translate(37 27)'%3E%3Cpath d='M0-10c5.52 0 10 4.48 10 10S5.52 10 0 10c-2.76 0-5-2.24-5-5s2.24-5 5-5 5-2.24 5-5-2.24-5-5-5z' fill='%23cd2e3a'/%3E%3Cpath d='M0 10c-5.52 0-10-4.48-10-10S-5.52-10 0-10c2.76 0 5 2.24 5 5S2.76 0 0 0s-5 2.24-5 5 2.24 5 5 5z' fill='%230047a0'/%3E%3C/g%3E%3Cg fill='%23111'%3E%3Cg transform='translate(15 13) rotate(-28)'%3E%3Crect x='-6' y='-6' width='12' height='2.2' rx='1.1'/%3E%3Crect x='-6' y='-1.8' width='12' height='2.2' rx='1.1'/%3E%3Crect x='-6' y='2.4' width='12' height='2.2' rx='1.1'/%3E%3C/g%3E%3Cg transform='translate(59 41) rotate(-28)'%3E%3Crect x='-6' y='-6' width='12' height='2.2' rx='1.1'/%3E%3Crect x='-6' y='-1.8' width='12' height='2.2' rx='1.1'/%3E%3Crect x='-6' y='2.4' width='12' height='2.2' rx='1.1'/%3E%3C/g%3E%3Cg transform='translate(59 13) rotate(28)'%3E%3Crect x='-6' y='-6' width='12' height='2.2' rx='1.1'/%3E%3Crect x='-4' y='-1.8' width='8' height='2.2' rx='1.1'/%3E%3Crect x='-6' y='2.4' width='12' height='2.2' rx='1.1'/%3E%3C/g%3E%3Cg transform='translate(15 41) rotate(28)'%3E%3Crect x='-6' y='-6' width='12' height='2.2' rx='1.1'/%3E%3Crect x='-6' y='-1.8' width='4.8' height='2.2' rx='1.1'/%3E%3Crect x='1.2' y='-1.8' width='4.8' height='2.2' rx='1.1'/%3E%3Crect x='-6' y='2.4' width='12' height='2.2' rx='1.1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .journey-top .place:last-child .flag::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 74 54'%3E%3Crect width='74' height='54' rx='10' fill='%23c60b1e'/%3E%3Crect y='13.5' width='74' height='27' fill='%23ffc400'/%3E%3Cg transform='translate(23 27)'%3E%3Crect x='-4.4' y='-9.2' width='8.8' height='18.4' rx='2.1' fill='%23a70f20'/%3E%3Crect x='-3.2' y='-7.4' width='6.4' height='14.8' rx='1.5' fill='%23f7d14a'/%3E%3Crect x='-1.5' y='-5.4' width='3' height='10.8' rx='0.7' fill='%23a70f20'/%3E%3Crect x='-2.8' y='-2.3' width='5.6' height='1.6' rx='0.7' fill='%23a70f20'/%3E%3Ccircle cx='0' cy='-6.8' r='1.15' fill='%23a70f20'/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .journey-top .place-time {
+      order: 3;
+      width: 124px;
+      min-width: 124px;
+      margin-top: auto;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: #24375d;
+      color: #ffffff;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 0.96rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      box-shadow: none;
+      text-align: center;
+    }
+
+    .journey-top .place-time::after {
+      content: "Hora local";
+      top: calc(100% + 10px);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    .journey .ticket-plane {
+      left: 50%;
+      top: 49.5%;
+      transform: translate(-50%, -50%);
+      font-size: 1.9rem;
+      color: #24375d;
+      text-shadow: none;
+    }
+
+    .travel-card {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 0;
+      padding: 26px 18px 16px;
+      border-radius: 30px;
+      box-shadow: 0 20px 40px rgba(74, 93, 133, 0.12);
+      align-items: stretch;
+    }
+
+    .countdown-column,
+    .route-column {
+      min-height: 186px;
+    }
+
+    .countdown-column {
+      padding-right: 16px;
+    }
+
+    .route-column {
+      padding-left: 16px;
+      border-left: 1px dashed rgba(189, 198, 216, 0.92);
+    }
+
+    .travel-card-title {
+      min-height: auto;
+      margin: 0 0 16px;
+      display: block;
+      color: #223456;
+      font-size: 0.92rem;
+      font-weight: 800;
+      line-height: 1.15;
+    }
+
+    .travel-date {
+      margin: 0 0 22px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #8692ab;
+      gap: 7px;
+    }
+
+    .travel-date::before {
+      content: "\01F4C5";
+      font-size: 0.9rem;
+      line-height: 1;
+    }
+
+    .travel-meta {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      align-items: stretch;
+    }
+
+    .travel-stat {
+      width: auto;
+      min-width: 0;
+      min-height: 82px;
+      padding: 10px 2px 8px;
+      border-radius: 18px;
+      border: 1px solid rgba(226, 232, 242, 0.95);
+      box-shadow: none;
+      justify-content: center;
+    }
+
+    .travel-value {
+      font-size: 0.96rem;
+      line-height: 1;
+      color: #23375c;
+    }
+
+    .travel-label {
+      margin-top: 8px;
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.11em;
+      color: #8b96ab;
+    }
+
+    .route-graphic {
+      position: relative;
+      height: 86px;
+      margin-top: 6px;
+      margin-bottom: 10px;
+    }
+
+    .route-arc {
+      left: 8px;
+      right: 8px;
+      top: 28px;
+      height: 42px;
+      border-top: 2px dashed rgba(194, 203, 219, 0.95);
+    }
+
+    .route-arc-plane {
+      top: 38px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #223456;
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+
+    .route-stops {
+      align-items: flex-start;
+    }
+
+    .route-stop {
+      gap: 2px;
+      padding-top: 14px;
+      color: #7f8ca7;
+    }
+
+    .route-stop strong {
+      font-size: 0.88rem;
+      line-height: 1;
+      color: #223456;
+    }
+
+    .route-stop span:last-child {
+      font-size: 0.64rem;
+    }
+
+    .route-stop-dot {
+      width: 11px;
+      height: 11px;
+    }
+
+    @media (max-width: 420px) {
+      .journey {
+        min-height: 336px;
+        padding: 16px 16px 18px;
+      }
+
+      .journey-top {
+        width: calc(100% - 56px);
+        bottom: 30px;
+        min-height: 194px;
+        padding: 16px 16px 24px;
+      }
+
+      .journey-top .place {
+        width: calc(50% - 8px);
+        padding: 0 6px;
+      }
+
+      .journey-top .place:first-child {
+        padding-right: 14px;
+      }
+
+      .journey-top .place:last-child {
+        padding-left: 14px;
+      }
+
+      .journey-top .place-name {
+        min-height: 28px;
+        font-size: 0.62rem;
+      }
+
+      .journey-top .flag {
+        width: 90px;
+        height: 64px;
+      }
+
+      .journey-top .place-time {
+        width: 118px;
+        min-width: 118px;
+        font-size: 0.92rem;
+      }
+
+      .journey .ticket-plane {
+        font-size: 1.78rem;
+      }
+
+      .travel-card {
+        padding: 24px 16px 14px;
+      }
+
+      .countdown-column {
+        padding-right: 12px;
+      }
+
+      .route-column {
+        padding-left: 12px;
+      }
+
+      .travel-stat {
+        width: auto;
+        min-width: 0;
+        min-height: 78px;
+        padding: 8px 2px;
+      }
+
+      .route-graphic {
+        height: 82px;
+      }
+    }
+
+    .journey-legacy,
+    .travel-card-legacy {
+      display: none;
+    }
+
+    .journey-replica {
+      position: relative;
+      min-height: 312px;
+      margin-bottom: 24px;
+      border-radius: 28px;
+      overflow: hidden;
+      background: linear-gradient(90deg, rgba(42, 58, 92, 0.05), rgba(255, 191, 143, 0.06));
+      box-shadow: 0 20px 42px rgba(68, 88, 125, 0.14);
+    }
+
+    .journey-replica::before,
+    .journey-replica::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+      z-index: 0;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: auto 100%;
+    }
+
+    .journey-replica::before {
+      left: 0;
+      background-image:
+        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.02)),
+        url("./Golden-Sunset-Over-Seoul-Urban-Nightscape-Seoul-Korea-1024x683.jpg");
+    }
+
+    .journey-replica::after {
+      right: 0;
+      background-image:
+        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.02)),
+        url("./catedral-vieja-valencia-plaza-virgen.webp");
+    }
+
+    .journey-replica .hero-favorite {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.92);
+      color: #24375d;
+      font-size: 1.18rem;
+      box-shadow: 0 10px 18px rgba(73, 91, 123, 0.14);
+      z-index: 2;
+    }
+
+    .boarding-pass {
+      position: absolute;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
+      width: calc(100% - 54px);
+      min-height: 182px;
+      display: grid;
+      grid-template-columns: 1fr 34px 1fr;
+      align-items: stretch;
+      padding: 18px 18px 16px;
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.93);
+      box-shadow: 0 18px 34px rgba(69, 88, 121, 0.16);
+      backdrop-filter: blur(8px);
+      z-index: 1;
+    }
+
+    .boarding-city {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .boarding-city-left {
+      padding-right: 12px;
+    }
+
+    .boarding-city-right {
+      padding-left: 12px;
+    }
+
+    .boarding-country {
+      margin: 0 0 18px;
+      min-height: 32px;
+      color: #22365b;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      line-height: 1.15;
+      text-transform: uppercase;
+    }
+
+    .boarding-flag {
+      width: 96px;
+      height: 66px;
+      border-radius: 18px;
+      background-color: #ffffff;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 72px 48px;
+      border: 1px solid rgba(232, 238, 246, 0.98);
+      box-shadow: 0 10px 18px rgba(75, 91, 122, 0.08);
+    }
+
+    .korea-flag {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 74 54'%3E%3Crect width='74' height='54' rx='10' fill='%23fff'/%3E%3Cg transform='translate(37 27)'%3E%3Cpath d='M0-10c5.52 0 10 4.48 10 10S5.52 10 0 10c-2.76 0-5-2.24-5-5s2.24-5 5-5 5-2.24 5-5-2.24-5-5-5z' fill='%23cd2e3a'/%3E%3Cpath d='M0 10c-5.52 0-10-4.48-10-10S-5.52-10 0-10c2.76 0 5 2.24 5 5S2.76 0 0 0s-5 2.24-5 5 2.24 5 5 5z' fill='%230047a0'/%3E%3C/g%3E%3Cg fill='%23111'%3E%3Cg transform='translate(15 13) rotate(-28)'%3E%3Crect x='-6' y='-6' width='12' height='2.2' rx='1.1'/%3E%3Crect x='-6' y='-1.8' width='12' height='2.2' rx='1.1'/%3E%3Crect x='-6' y='2.4' width='12' height='2.2' rx='1.1'/%3E%3C/g%3E%3Cg transform='translate(59 41) rotate(-28)'%3E%3Crect x='-6' y='-6' width='12' height='2.2' rx='1.1'/%3E%3Crect x='-6' y='-1.8' width='12' height='2.2' rx='1.1'/%3E%3Crect x='-6' y='2.4' width='12' height='2.2' rx='1.1'/%3E%3C/g%3E%3Cg transform='translate(59 13) rotate(28)'%3E%3Crect x='-6' y='-6' width='12' height='2.2' rx='1.1'/%3E%3Crect x='-4' y='-1.8' width='8' height='2.2' rx='1.1'/%3E%3Crect x='-6' y='2.4' width='12' height='2.2' rx='1.1'/%3E%3C/g%3E%3Cg transform='translate(15 41) rotate(28)'%3E%3Crect x='-6' y='-6' width='12' height='2.2' rx='1.1'/%3E%3Crect x='-6' y='-1.8' width='4.8' height='2.2' rx='1.1'/%3E%3Crect x='1.2' y='-1.8' width='4.8' height='2.2' rx='1.1'/%3E%3Crect x='-6' y='2.4' width='12' height='2.2' rx='1.1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .spain-flag {
+      background-size: cover;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 84 60'%3E%3Crect width='84' height='60' rx='14' fill='%23c8102e'/%3E%3Crect y='15' width='84' height='30' fill='%23ffc400'/%3E%3Cg transform='translate(30 30)'%3E%3Cpath d='M-6.5-10h7c1.7 0 3 1.3 3 3v14c0 1.7-1.3 3-3 3h-7c-1.7 0-3-1.3-3-3V-7c0-1.7 1.3-3 3-3z' fill='%23a61d2d'/%3E%3Cpath d='M-4.8-8h3.1l1.7 1.5L1.7-8h3.1v12h-9.6z' fill='%23f6d25d'/%3E%3Crect x='-2.2' y='-4.2' width='4.4' height='8.4' rx='0.8' fill='%23a61d2d'/%3E%3Crect x='-0.9' y='-3.1' width='1.8' height='6.2' rx='0.4' fill='%23ffc400'/%3E%3Cpath d='M-2.8-11.5c0-1.6 1.2-2.8 2.8-2.8s2.8 1.2 2.8 2.8' fill='none' stroke='%23b8860b' stroke-width='1.4' stroke-linecap='round'/%3E%3Ccircle cx='0' cy='-14.1' r='0.95' fill='%23b8860b'/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .boarding-time {
+      min-width: 124px;
+      margin-top: 18px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: #24375d;
+      color: #ffffff;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 0.98rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      text-align: center;
+    }
+
+    .boarding-caption {
+      margin: 12px 0 0;
+      color: #7e8aa2;
+      font-size: 0.74rem;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .boarding-center {
+      position: relative;
+      align-self: stretch;
+      justify-self: center;
+      width: 34px;
+    }
+
+    .boarding-center::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 8px;
+      bottom: 8px;
+      border-left: 1px dashed rgba(190, 198, 215, 0.9);
+      transform: translateX(-50%);
+    }
+
+    .boarding-notch {
+      position: absolute;
+      left: 50%;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #b9bfcb;
+      transform: translateX(-50%);
+    }
+
+    .boarding-notch-top {
+      top: -4px;
+    }
+
+    .boarding-notch-bottom {
+      bottom: -4px;
+    }
+
+    .boarding-plane {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      color: #24375d;
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .travel-card-replica {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      margin-bottom: 26px;
+      padding: 28px 22px 18px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 20px 42px rgba(69, 88, 121, 0.12);
+      border: 1px solid rgba(247, 249, 253, 0.95);
+    }
+
+    .travel-panel {
+      min-width: 0;
+    }
+
+    .travel-panel-left {
+      padding-right: 22px;
+    }
+
+    .travel-panel-right {
+      padding-left: 22px;
+      border-left: 1px dashed rgba(201, 208, 223, 0.9);
+    }
+
+    .travel-card-replica .travel-card-title {
+      margin: 0 0 16px;
+      color: #22365b;
+      font-size: 0.94rem;
+      font-weight: 800;
+      line-height: 1.15;
+    }
+
+    .travel-card-replica .travel-date {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 24px;
+      color: #8a96ad;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    .travel-card-replica .travel-date::before {
+      content: "📅";
+      font-size: 0.9rem;
+      line-height: 1;
+    }
+
+    .travel-card-replica .travel-meta {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      justify-content: start;
+    }
+
+    .travel-card-replica .travel-stat {
+      width: auto;
+      min-width: 0;
+      height: 76px;
+      min-height: 76px;
+      padding: 10px 4px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      background: #ffffff;
+      border: 1px solid rgba(231, 236, 244, 0.98);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.92),
+        0 6px 12px rgba(84, 101, 132, 0.025);
+    }
+
+    .travel-card-replica .travel-value {
+      color: #22365b;
+      font-size: 1.08rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .travel-card-replica .travel-label {
+      margin-top: 7px;
+      color: #8a96ad;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .travel-card-replica .route-graphic {
+      position: relative;
+      height: 92px;
+      margin: 8px 0 10px;
+    }
+
+    .travel-card-replica .route-arc {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      top: 30px;
+      height: 48px;
+      border-top: 2px dashed rgba(198, 206, 222, 0.95);
+      border-radius: 50% 50% 0 0;
+    }
+
+    .travel-card-replica .route-arc-plane {
+      position: absolute;
+      left: 50%;
+      top: 34px;
+      transform: translate(-50%, -50%);
+      color: #22365b;
+      font-size: 1.8rem;
+      line-height: 1;
+      transition: left 0.6s ease, top 0.6s ease;
+    }
+
+    .travel-card-replica .route-stops {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .travel-card-replica .route-stop {
+      position: relative;
+      padding-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      color: #7e8aa2;
+    }
+
+    .travel-card-replica .route-stop.align-right {
+      align-items: flex-end;
+      text-align: right;
+    }
+
+    .travel-card-replica .route-stop strong {
+      color: #22365b;
+      font-size: 0.98rem;
+      line-height: 1;
+    }
+
+    .travel-card-replica .route-stop span:last-child {
+      font-size: 0.72rem;
+    }
+
+    .travel-card-replica .route-stop-dot {
+      position: absolute;
+      top: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .travel-card-replica .route-stop-dot.seoul {
+      left: 0;
+      background: #60abf3;
+    }
+
+    .travel-card-replica .route-stop-dot.madrid {
+      right: 0;
+      background: #ff9e4c;
+    }
+
+    @media (max-width: 420px) {
+      .journey-replica {
+        min-height: 306px;
+      }
+
+      .boarding-pass {
+        width: calc(100% - 58px);
+        min-height: 176px;
+        padding: 16px 16px 14px;
+        grid-template-columns: 1fr 30px 1fr;
+      }
+
+      .boarding-city-left {
+        padding-right: 10px;
+      }
+
+      .boarding-city-right {
+        padding-left: 10px;
+      }
+
+      .boarding-country {
+        margin-bottom: 16px;
+        font-size: 0.64rem;
+      }
+
+      .boarding-flag {
+        width: 90px;
+        height: 62px;
+        background-size: 66px 44px;
+      }
+
+      .boarding-time {
+        min-width: 116px;
+        padding: 10px 12px;
+        font-size: 0.94rem;
+      }
+
+      .boarding-caption {
+        font-size: 0.72rem;
+      }
+
+      .boarding-plane {
+        font-size: 1.85rem;
+      }
+
+      .travel-card-replica {
+        padding: 24px 18px 14px;
+      }
+
+      .travel-panel-left {
+        padding-right: 16px;
+      }
+
+      .travel-panel-right {
+        padding-left: 16px;
+      }
+
+      .travel-card-replica .travel-meta {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 6px;
+      }
+
+      .travel-card-replica .travel-stat {
+        width: auto;
+        min-width: 0;
+        height: 70px;
+        min-height: 70px;
+      }
+
+      .travel-card-replica .route-graphic {
+        height: 86px;
+      }
+    }
+
+    .travel-card-replica .travel-date::before {
+      content: "📅";
+      font-size: 0.86rem;
+      line-height: 1;
+    }
+
+    .travel-card-replica .travel-date::before {
+      content: "📅" !important;
+    }
+
+    .spain-flag {
+      background-image: url("./Bandera.jpg") !important;
+      background-size: cover !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+    }
   </style>
 </head>
 <body>
@@ -985,8 +2943,92 @@
   <div class="blob two"></div>
   <div class="blob three"></div>
 
-  <main class="app">
-    <section class="journey" aria-label="Trayecto del viaje">
+  <main class="app app-shell">
+    <header class="mobile-top">
+      <div class="device-time" id="device-time">00:00</div>
+      <div class="device-icons" aria-hidden="true">
+        <span class="bars"><i></i><i></i><i></i><i></i></span>
+        <span class="wifi"></span>
+        <span class="battery"><span>64</span></span>
+      </div>
+    </header>
+
+    <section class="hero-intro" aria-label="Introducción">
+      <div>
+        <h1 class="hero-title" id="greeting-title">¡Buenas tardes, Javier!</h1>
+        <p class="hero-subtitle">Tu próxima aventura te espera ✈</p>
+      </div>
+      <button class="menu-badge" type="button" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </section>
+    <section class="journey-replica" aria-label="Trayecto del viaje">
+      <button class="hero-favorite" type="button" aria-label="Favorito">♡</button>
+      <div class="boarding-pass">
+        <div class="boarding-city boarding-city-left">
+          <h2 class="boarding-country">Corea del Sur</h2>
+          <div class="boarding-flag korea-flag" aria-hidden="true"></div>
+          <div class="boarding-time" id="time-korea">00:00</div>
+          <p class="boarding-caption">Hora local</p>
+        </div>
+        <div class="boarding-center" aria-hidden="true">
+          <span class="boarding-notch boarding-notch-top"></span>
+          <span class="boarding-notch boarding-notch-bottom"></span>
+          <span class="boarding-plane">✈</span>
+        </div>
+        <div class="boarding-city boarding-city-right">
+          <h2 class="boarding-country">Espa&ntilde;a</h2>
+          <div class="boarding-flag spain-flag" aria-hidden="true"></div>
+          <div class="boarding-time" id="time-spain">00:00</div>
+          <p class="boarding-caption">Hora local</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="travel-card-replica" aria-label="Resumen del viaje">
+      <div class="travel-panel travel-panel-left">
+        <h2 class="travel-card-title">Faltan para tu viaje</h2>
+        <p class="travel-date">19 AGO 2026</p>
+        <div class="travel-meta">
+          <div class="travel-stat">
+            <span class="travel-value" id="days-card">0</span>
+            <span class="travel-label">D</span>
+          </div>
+          <div class="travel-stat">
+            <span class="travel-value" id="hours-card">0</span>
+            <span class="travel-label">H</span>
+          </div>
+          <div class="travel-stat">
+            <span class="travel-value" id="minutes-card">0</span>
+            <span class="travel-label">M</span>
+          </div>
+          <div class="travel-stat">
+            <span class="travel-value" id="seconds-card">0</span>
+            <span class="travel-label">S</span>
+          </div>
+        </div>
+      </div>
+      <div class="travel-panel travel-panel-right">
+        <h2 class="travel-card-title">Ruta de embarque</h2>
+        <div class="route-graphic">
+          <div class="route-arc"></div>
+          <div class="route-arc-plane">✈</div>
+        </div>
+        <div class="route-stops">
+          <div class="route-stop">
+            <span class="route-stop-dot seoul"></span>
+            <strong>ICN</strong>
+            <span>Se&uacute;l</span>
+          </div>
+          <div class="route-stop align-right">
+            <span class="route-stop-dot madrid"></span>
+            <strong>VLC</strong>
+            <span>Valencia</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="journey journey-legacy" aria-label="Trayecto del viaje">
       <div class="journey-top">
         <div class="place">
           <div class="place-time" id="time-korea">00:00</div>
@@ -1037,6 +3079,7 @@
         </div>
       </div>
 
+      <div class="ticket-plane" aria-hidden="true">✈</div>
       <div class="board-chip">Boarding Route</div>
       <div class="route" aria-hidden="true">
         <div class="route-line"></div>
@@ -1063,6 +3106,51 @@
       </div>
     </section>
 
+    <section class="travel-card travel-card-legacy" aria-label="Resumen del viaje">
+      <div class="travel-column countdown-column">
+        <h2 class="travel-card-title">Faltan para tu viaje</h2>
+        <p class="travel-date">📅 19 AGO 2026</p>
+        <div class="travel-meta">
+          <div class="travel-stat">
+            <span class="travel-value" id="days-card">0</span>
+            <span class="travel-label">DÍAS</span>
+          </div>
+          <div class="travel-stat">
+            <span class="travel-value" id="hours-card">0</span>
+            <span class="travel-label">HORAS</span>
+          </div>
+          <div class="travel-stat">
+            <span class="travel-value" id="minutes-card">0</span>
+            <span class="travel-label">MIN</span>
+          </div>
+          <div class="travel-stat">
+            <span class="travel-value" id="seconds-card">0</span>
+            <span class="travel-label">SEG</span>
+          </div>
+        </div>
+      </div>
+      <div class="travel-column route-column">
+        <h2 class="travel-card-title">Ruta de embarque</h2>
+        <div class="route-graphic">
+          <div class="route-arc"></div>
+          <div class="route-arc-plane">✈</div>
+        </div>
+        <div class="route-stops">
+          <div class="route-stop">
+            <span class="route-stop-dot seoul"></span>
+            <strong>ICN</strong>
+            <span>Seúl</span>
+          </div>
+          <div class="route-stop align-right">
+            <span class="route-stop-dot madrid"></span>
+            <strong>VLC</strong>
+            <span>Valencia</span>
+          </div>
+        </div>
+      </div>
+      <button class="travel-cta" type="button">Ver detalles del viaje</button>
+    </section>
+
     <section class="song-card" aria-label="Portada diaria de Spotify">
       <img class="song-cover" id="song-cover" alt="Portada de Spotify del día">
       <div>
@@ -1075,8 +3163,24 @@
       </div>
     </section>
 
+    <section class="spaces-intro" aria-label="Tus espacios">
+      <div class="spaces-mark">✦</div>
+      <div>
+        <h2 class="spaces-title">Tus espacios</h2>
+        <p class="spaces-subtitle">Guarda, planifica y recuerda cada momento.</p>
+      </div>
+    </section>
+
+    <div class="spaces-grid">
     <section class="phrase-wrap" aria-label="Frase del día">
-      <button class="phrase-button" id="phrase-button" type="button">Ver frase del día</button>
+      <button class="phrase-button" id="phrase-button" type="button">
+        <span class="space-card-icon phrase">“</span>
+        <span class="space-card-copy">
+          <span class="space-card-title">Frase del día</span>
+          <span class="space-card-subtitle">Inspírate</span>
+        </span>
+        <span class="space-card-arrow">›</span>
+      </button>
       <div class="phrase-box" id="phrase-box">
         <span class="phrase-label">Frase del día</span>
         <p class="phrase-text" id="phrase-text"></p>
@@ -1091,7 +3195,14 @@
     </section>
 
     <section class="planner" aria-label="Planes y comidas">
-      <button class="planner-toggle" id="planner-toggle" type="button">Diario de planes</button>
+      <button class="planner-toggle" id="planner-toggle" type="button">
+        <span class="space-card-icon planner">☰</span>
+        <span class="space-card-copy">
+          <span class="space-card-title">Diario de planes</span>
+          <span class="space-card-subtitle">Organiza tu viaje</span>
+        </span>
+        <span class="space-card-arrow">›</span>
+      </button>
       <div class="planner-content" id="planner-content">
         <p class="planner-subtitle">Escribe un plan y una comida que te gustaría hacer en el futuro.</p>
         <form class="planner-form" id="planner-form">
@@ -1108,7 +3219,14 @@
     </section>
 
     <section class="photo-diary" aria-label="Diario de fotos">
-      <button class="photo-toggle" id="photo-toggle" type="button">Diario de fotos</button>
+      <button class="photo-toggle" id="photo-toggle" type="button">
+        <span class="space-card-icon photo">◉</span>
+        <span class="space-card-copy">
+          <span class="space-card-title">Diario de fotos</span>
+          <span class="space-card-subtitle">Tus recuerdos</span>
+        </span>
+        <span class="space-card-arrow">›</span>
+      </button>
       <div class="photo-content" id="photo-content">
         <div class="photo-actions">
           <label class="photo-button" for="photo-input">
@@ -1130,6 +3248,7 @@
         <div class="photo-list" id="photo-list"></div>
       </div>
     </section>
+    </div>
 
     <div class="done" id="done">La fecha ya ha llegado.</div>
   </main>
@@ -1189,17 +3308,26 @@
     const state = { plansByDay: {}, phrasesByDay: {}, photosByDay: {} };
     const selectedPhotoIds = new Set();
     const elements = {
+      deviceTime: document.getElementById("device-time"),
+      greetingTitle: document.getElementById("greeting-title"),
       days: document.getElementById("days"),
       hours: document.getElementById("hours"),
       minutes: document.getElementById("minutes"),
       seconds: document.getElementById("seconds"),
+      daysCard: document.getElementById("days-card"),
+      hoursCard: document.getElementById("hours-card"),
+      minutesCard: document.getElementById("minutes-card"),
+      secondsCard: document.getElementById("seconds-card"),
+      travelDate: document.querySelector(".travel-date"),
       done: document.getElementById("done"),
       routeProgress: document.getElementById("route-progress"),
       plane: document.getElementById("plane"),
+      routeArcPlane: document.querySelector(".route-arc-plane"),
       songCover: document.getElementById("song-cover"),
       songTitle: document.getElementById("song-title"),
       songMeta: document.getElementById("song-meta"),
       songLink: document.getElementById("song-link"),
+      phraseSection: document.querySelector(".phrase-wrap"),
       phraseButton: document.getElementById("phrase-button"),
       phraseBox: document.getElementById("phrase-box"),
       phraseText: document.getElementById("phrase-text"),
@@ -1245,6 +3373,13 @@
       return new Intl.DateTimeFormat("es-ES", { timeZone, hour: "2-digit", minute: "2-digit", hour12: false }).format(date);
     }
 
+    function getGreetingByHour(date) {
+      const hour = Number(new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Madrid", hour: "2-digit", hour12: false }).format(date));
+      if (hour < 12) return "¡Buenos días, Javier!";
+      if (hour < 20) return "¡Buenas tardes, Javier!";
+      return "¡Buenas noches, Javier!";
+    }
+
     function escapeHtml(value) {
       return String(value)
         .replaceAll("&", "&amp;")
@@ -1252,6 +3387,13 @@
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#39;");
+    }
+
+    function getLocalDayKey(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
     }
 
     function getDayIndex(now) {
@@ -1283,7 +3425,8 @@
 
     function renderSavedPhrases(now) {
       const day = getDayData(now);
-      const saved = state.phrasesByDay[day.key] || { nuria: "", javi: "" };
+      const phraseDayKey = getLocalDayKey(now);
+      const saved = state.phrasesByDay[phraseDayKey] || { nuria: "", javi: "" };
       const isEditing = document.activeElement === elements.phrasePersonOne || document.activeElement === elements.phrasePersonTwo;
 
       if (!isEditing) {
@@ -1374,6 +3517,15 @@
       const progressPercent = Math.round(progress * 100);
       elements.routeProgress.style.width = `${progressPercent}%`;
       elements.plane.style.left = `${progressPercent}%`;
+      if (elements.routeArcPlane) {
+        const leftPercent = 18 + (progress * 64);
+        const topPx = 72 - (Math.sin(Math.PI * progress) * 30);
+        elements.routeArcPlane.style.left = `${leftPercent}%`;
+        elements.routeArcPlane.style.top = `${topPx}px`;
+      }
+      elements.deviceTime.textContent = formatTimeInZone(now, "Europe/Madrid");
+      elements.greetingTitle.textContent = getGreetingByHour(now);
+      elements.travelDate.textContent = "19 AGO 2026";
       elements.timeKorea.textContent = formatTimeInZone(now, "Asia/Seoul");
       elements.timeSpain.textContent = formatTimeInZone(now, "Europe/Madrid");
       updateDailySong(now);
@@ -1386,9 +3538,17 @@
         elements.hours.textContent = "00";
         elements.minutes.textContent = "00";
         elements.seconds.textContent = "00";
+        if (elements.daysCard) elements.daysCard.textContent = "00";
+        if (elements.hoursCard) elements.hoursCard.textContent = "00";
+        if (elements.minutesCard) elements.minutesCard.textContent = "00";
+        if (elements.secondsCard) elements.secondsCard.textContent = "00";
         elements.done.style.display = "block";
         elements.routeProgress.style.width = "100%";
         elements.plane.style.left = "100%";
+        if (elements.routeArcPlane) {
+          elements.routeArcPlane.style.left = "82%";
+          elements.routeArcPlane.style.top = "72px";
+        }
         return;
       }
 
@@ -1401,12 +3561,16 @@
       elements.hours.textContent = pad(hours);
       elements.minutes.textContent = pad(minutes);
       elements.seconds.textContent = pad(seconds);
+      if (elements.daysCard) elements.daysCard.textContent = pad(days);
+      if (elements.hoursCard) elements.hoursCard.textContent = pad(hours);
+      if (elements.minutesCard) elements.minutesCard.textContent = pad(minutes);
+      if (elements.secondsCard) elements.secondsCard.textContent = pad(seconds);
     }
 
     async function loadCloudData() {
       const [plansResult, phrasesResult, photosResult] = await Promise.all([
         supabase.from("trip_plans").select("id, day_key, plan, food, created_at").order("created_at", { ascending: true }),
-        supabase.from("trip_phrases").select("day_key, nuria, javi"),
+        supabase.from("trip_phrases").select("day_key, nuria, javi, updated_at"),
         supabase.from("trip_photos").select("id, day_key, photo_path, created_at").order("created_at", { ascending: false })
       ]);
       if (plansResult.error) throw plansResult.error;
@@ -1421,7 +3585,13 @@
 
       state.phrasesByDay = {};
       for (const item of phrasesResult.data) {
-        state.phrasesByDay[item.day_key] = item;
+        const existing = state.phrasesByDay[item.day_key] || { day_key: item.day_key, nuria: "", javi: "", updated_at: "" };
+        state.phrasesByDay[item.day_key] = {
+          day_key: item.day_key,
+          nuria: item.nuria || existing.nuria || "",
+          javi: item.javi || existing.javi || "",
+          updated_at: item.updated_at || existing.updated_at || ""
+        };
       }
 
       state.photosByDay = {};
@@ -1432,17 +3602,33 @@
       }
     }
 
-    elements.phraseButton.addEventListener("click", () => {
+    async function refreshCloudDataSilently() {
+      try {
+        await loadCloudData();
+        const now = new Date();
+        renderSavedPhrases(now);
+        renderPlanner(now);
+        renderPhotos(now);
+      } catch (error) {
+        console.error("No se pudo refrescar Supabase", error);
+      }
+    }
+
+    elements.phraseButton.addEventListener("click", async () => {
+      elements.phraseSection.classList.toggle("is-open");
       elements.phraseBox.classList.toggle("is-visible");
+      await refreshCloudDataSilently();
     });
 
     elements.phraseSaved.addEventListener("click", async (event) => {
       const button = event.target.closest("button[data-action='edit-phrase'], button[data-action='delete-phrase']");
       if (!button) return;
 
-      const day = getDayData(new Date());
+      const now = new Date();
+      const day = getDayData(now);
+      const phraseDayKey = getLocalDayKey(now);
       const person = button.dataset.person;
-      const current = state.phrasesByDay[day.key] || { nuria: "", javi: "" };
+      const current = state.phrasesByDay[phraseDayKey] || { nuria: "", javi: "" };
 
       if (button.dataset.action === "edit-phrase") {
         if (person === "nuria") elements.phrasePersonOne.focus();
@@ -1461,7 +3647,7 @@
       }
 
       const payload = {
-        day_key: day.key,
+        day_key: phraseDayKey,
         nuria: current.nuria || "",
         javi: current.javi || "",
         updated_at: new Date().toISOString()
@@ -1473,31 +3659,36 @@
         return;
       }
 
-      state.phrasesByDay[day.key] = payload;
-      renderSavedPhrases(new Date());
+      state.phrasesByDay[phraseDayKey] = payload;
+      renderSavedPhrases(now);
       elements.phraseStatus.textContent = "Frase borrada.";
     });
 
     elements.phraseForm.addEventListener("submit", async (event) => {
       event.preventDefault();
-      const day = getDayData(new Date());
-      const nuria = elements.phrasePersonOne.value.trim();
-      const javi = elements.phrasePersonTwo.value.trim();
+      const now = new Date();
+      const day = getDayData(now);
+      const phraseDayKey = getLocalDayKey(now);
+      const current = state.phrasesByDay[phraseDayKey] || { nuria: "", javi: "" };
+      const nuriaInput = elements.phrasePersonOne.value.trim();
+      const javiInput = elements.phrasePersonTwo.value.trim();
+      const nuria = nuriaInput || current.nuria || "";
+      const javi = javiInput || current.javi || "";
       if (!nuria && !javi) {
         elements.phraseStatus.textContent = "Escribe al menos una frase.";
         return;
       }
 
       elements.phraseStatus.textContent = "Guardando...";
-      const { error } = await supabase.from("trip_phrases").upsert({ day_key: day.key, nuria, javi, updated_at: new Date().toISOString() });
+      const { error } = await supabase.from("trip_phrases").upsert({ day_key: phraseDayKey, nuria, javi, updated_at: new Date().toISOString() });
       if (error) {
         elements.phraseStatus.textContent = "No se pudieron guardar las frases.";
         return;
       }
 
-      state.phrasesByDay[day.key] = { day_key: day.key, nuria, javi };
+      state.phrasesByDay[phraseDayKey] = { day_key: phraseDayKey, nuria, javi };
       elements.phraseStatus.textContent = `Frases guardadas para el ${day.label}.`;
-      renderSavedPhrases(new Date());
+      renderSavedPhrases(now);
     });
 
     elements.plannerToggle.addEventListener("click", () => {
@@ -1714,6 +3905,7 @@
     async function init() {
       updateCountdown();
       setInterval(updateCountdown, 1000);
+      setInterval(refreshCloudDataSilently, 15000);
       try {
         await loadCloudData();
         updateCountdown();
