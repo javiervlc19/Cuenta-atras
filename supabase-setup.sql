@@ -150,6 +150,13 @@ create policy "public can update trip photos"
   using (true)
   with check (true);
 
+drop policy if exists "public can delete trip photos" on public.trip_photos;
+create policy "public can delete trip photos"
+  on public.trip_photos
+  for delete
+  to anon
+  using (true);
+
 drop policy if exists "public can read trip photo objects" on storage.objects;
 create policy "public can read trip photo objects"
   on storage.objects

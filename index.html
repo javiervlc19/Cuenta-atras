@@ -1582,26 +1582,32 @@
       }
 
       elements.photoStatus.textContent = "Borrando fotos...";
+      const selectedIds = selectedItems.map((item) => item.id);
       const photoPaths = selectedItems.map((item) => item.photo_path).filter(Boolean);
-      if (photoPaths.length > 0) {
-        await supabase.storage.from(photoBucket).remove(photoPaths);
-      }
 
-      const { error } = await supabase.from("trip_photos").delete().in("id", selectedItems.map((item) => item.id));
+      const { error } = await supabase.from("trip_photos").delete().in("id", selectedIds);
       if (error) {
         elements.photoStatus.textContent = "No se pudieron borrar las fotos.";
         return;
       }
 
-      for (const item of selectedItems) {
-        state.photosByDay[item.dayKey] = (state.photosByDay[item.dayKey] || []).filter((photo) => photo.id !== item.id);
-        if (state.photosByDay[item.dayKey].length === 0) delete state.photosByDay[item.dayKey];
+      let storageWarning = false;
+      if (photoPaths.length > 0) {
+        const { error: storageError } = await supabase.storage.from(photoBucket).remove(photoPaths);
+        if (storageError) {
+          storageWarning = true;
+        }
       }
 
       const deletedCount = selectedItems.length;
       selectedPhotoIds.clear();
       photoEditMode = false;
-      elements.photoStatus.textContent = deletedCount === 1 ? "1 foto borrada." : `${deletedCount} fotos borradas.`;
+      await loadCloudData();
+      elements.photoStatus.textContent = storageWarning
+        ? "Las fotos se quitaron del diario, pero alguna imagen no se pudo borrar del almacenamiento."
+        : deletedCount === 1
+          ? "1 foto borrada."
+          : `${deletedCount} fotos borradas.`;
       renderPhotos(new Date());
     });
 
