@@ -919,119 +919,58 @@
     <div class="done" id="done">La fecha ya ha llegado.</div>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     const startDate = new Date("2026-08-05T00:00:00");
     const targetDate = new Date("2026-08-19T23:59:59");
     const playlistUrl = "https://open.spotify.com/playlist/6dcn0botFOWBa0RccwhTC7";
-    const storageKey = "countdown-trip-plans-v1";
-    const phraseStorageKey = "countdown-daily-phrases-v1";
-    const photoStorageKey = "countdown-daily-photos-v1";
+    const supabaseUrl = "https://tbuxgrsflstvxdpkfmqh.supabase.co";
+    const supabaseKey = "sb_publishable_CttRggCC1UMWlzrEhAP9PQ_-oNkQPJx";
+    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+    const photoBucket = "trip-photos";
     const dailyPhrases = [
       "Todo lo bonito que viene hacia ti ya ha empezado a encontrarte.",
       "A veces el destino tarda un poco, pero siempre sabe llegar a tiempo.",
-      "Cada día que pasa es una página más de algo que vas a recordar con una sonrisa.",
-      "Lo mejor de algunos viajes es que empiezan en el corazón antes que en el mapa.",
+      "Cada dia que pasa es una pagina mas de algo que vas a recordar con una sonrisa.",
+      "Lo mejor de algunos viajes es que empiezan en el corazon antes que en el mapa.",
       "Hay esperas que merecen la pena porque al final traen abrazos, luz y calma.",
-      "La ilusión también cuenta kilómetros, aunque viaje en silencio.",
-      "Cuando algo importa de verdad, cada día de espera también tiene sentido.",
+      "La ilusion tambien cuenta kilometros, aunque viaje en silencio.",
+      "Cuando algo importa de verdad, cada dia de espera tambien tiene sentido.",
       "El amor bonito siempre encuentra la forma de acercar dos lugares.",
       "No hace falta correr cuando lo que te espera al final ya es especial.",
-      "Todo está avanzando, incluso en los días que parecen quietos.",
-      "Qué suerte tener un motivo tan bonito para mirar la cuenta atrás con ganas.",
-      "Lo que está hecho para ti se siente cerca incluso antes de llegar.",
-      "Cada amanecer te deja un poco más cerca de ese momento que tanto imaginas.",
+      "Todo esta avanzando, incluso en los dias que parecen quietos.",
+      "Que suerte tener un motivo tan bonito para mirar la cuenta atras con ganas.",
+      "Lo que esta hecho para ti se siente cerca incluso antes de llegar.",
+      "Cada amanecer te deja un poco mas cerca de ese momento que tanto imaginas.",
       "Hay encuentros que convierten la espera en parte de la magia.",
       "Hoy ya casi se toca con las manos todo lo bonito que estaba por venir."
     ];
     const dailyTracks = [
-      {
-        title: "La Noche Contigo",
-        image: "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e025dc5131e3679aae6ec377fc9",
-        url: "https://open.spotify.com/track/7yuwzYw5IxF6j2BZYJ9KZ4"
-      },
-      {
-        title: "Benijo",
-        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e0281ba0bde875b2e9d33b711bb",
-        url: "https://open.spotify.com/track/7zSpn5zvfppsQGC1hbldw9"
-      },
-      {
-        title: "Sinatra",
-        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e025e1bc9a9361df850bbd99f60",
-        url: "https://open.spotify.com/track/0mwNxjiYUyVGLSVo9UnIjv"
-      },
-      {
-        title: "Una vida sin ti",
-        image: "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02cacd4a24a14436e4cafb6def",
-        url: "https://open.spotify.com/track/5BEGTcCRSviHwbXtfNTizE"
-      },
-      {
-        title: "Por ti por mí",
-        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e0212eb3d348226fce5884452e0",
-        url: "https://open.spotify.com/track/1EK4DofkWaRLBsG27jhmlt"
-      },
-      {
-        title: "A tu lado",
-        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e026e38ceb7ca3b25244df62a21",
-        url: "https://open.spotify.com/track/1R6NmAzOGeZ7hP4OoCfEeU"
-      },
-      {
-        title: "Un amor como los de antes",
-        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e026a1bc585fa2cd3f9a6a2fdfa",
-        url: "https://open.spotify.com/track/091cJW2tB4lqlNEX6pOsll"
-      },
-      {
-        title: "Todo contigo",
-        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e0227d7fb4b186a0c53a0b3f7f2",
-        url: "https://open.spotify.com/track/2vwdbfJUtPh1E6aiyNNAjM"
-      },
-      {
-        title: "Física y Química",
-        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02c01b615a760bee0884540782",
-        url: "https://open.spotify.com/track/6LjMfmFadOqv00mkoEhYlR"
-      },
-      {
-        title: "Amor Infinito",
-        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e026da95744863b69993a646ecb",
-        url: "https://open.spotify.com/track/1KTFvlTR9JCrceX0VJrVxS"
-      },
-      {
-        title: "Cuando te tengo delante",
-        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02d5edcb8f8b306b06858b54c6",
-        url: "https://open.spotify.com/track/3wRCQDJtooruv3voomaHqQ"
-      },
-      {
-        title: "El Sitio de Siempre",
-        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e0279c0923e46a4e87fa93d0de2",
-        url: "https://open.spotify.com/track/3PzUILVXbLiNCIRx4qq5IL"
-      },
-      {
-        title: "Qué bonito",
-        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02952beb29db5f6ce151e30bd2",
-        url: "https://open.spotify.com/track/20nWXGPfwZuvZfpK1CrF6t"
-      },
-      {
-        title: "¿Y si lo hacemos? (feat. Valeria Castro)",
-        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02ff9f94c5e737ac4656595609",
-        url: "https://open.spotify.com/track/2rkZ5enpmgfL1kFp0IWFrR"
-      },
-      {
-        title: "Robarle tiempo al tiempo",
-        image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e021dd6f01837c88311dd661c47",
-        url: "https://open.spotify.com/track/0TCgYIbphnGDyOrdTHRvtJ"
-      }
+      { title: "La Noche Contigo", image: "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e025dc5131e3679aae6ec377fc9", url: "https://open.spotify.com/track/7yuwzYw5IxF6j2BZYJ9KZ4" },
+      { title: "Benijo", image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e0281ba0bde875b2e9d33b711bb", url: "https://open.spotify.com/track/7zSpn5zvfppsQGC1hbldw9" },
+      { title: "Sinatra", image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e025e1bc9a9361df850bbd99f60", url: "https://open.spotify.com/track/0mwNxjiYUyVGLSVo9UnIjv" },
+      { title: "Una vida sin ti", image: "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02cacd4a24a14436e4cafb6def", url: "https://open.spotify.com/track/5BEGTcCRSviHwbXtfNTizE" },
+      { title: "Por ti por mi", image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e0212eb3d348226fce5884452e0", url: "https://open.spotify.com/track/1EK4DofkWaRLBsG27jhmlt" },
+      { title: "A tu lado", image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e026e38ceb7ca3b25244df62a21", url: "https://open.spotify.com/track/1R6NmAzOGeZ7hP4OoCfEeU" },
+      { title: "Un amor como los de antes", image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e026a1bc585fa2cd3f9a6a2fdfa", url: "https://open.spotify.com/track/091cJW2tB4lqlNEX6pOsll" },
+      { title: "Todo contigo", image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e0227d7fb4b186a0c53a0b3f7f2", url: "https://open.spotify.com/track/2vwdbfJUtPh1E6aiyNNAjM" },
+      { title: "Fisica y Quimica", image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02c01b615a760bee0884540782", url: "https://open.spotify.com/track/6LjMfmFadOqv00mkoEhYlR" },
+      { title: "Amor Infinito", image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e026da95744863b69993a646ecb", url: "https://open.spotify.com/track/1KTFvlTR9JCrceX0VJrVxS" },
+      { title: "Cuando te tengo delante", image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02d5edcb8f8b306b06858b54c6", url: "https://open.spotify.com/track/3wRCQDJtooruv3voomaHqQ" },
+      { title: "El Sitio de Siempre", image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e0279c0923e46a4e87fa93d0de2", url: "https://open.spotify.com/track/3PzUILVXbLiNCIRx4qq5IL" },
+      { title: "Que bonito", image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02952beb29db5f6ce151e30bd2", url: "https://open.spotify.com/track/20nWXGPfwZuvZfpK1CrF6t" },
+      { title: "Y si lo hacemos? (feat. Valeria Castro)", image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02ff9f94c5e737ac4656595609", url: "https://open.spotify.com/track/2rkZ5enpmgfL1kFp0IWFrR" },
+      { title: "Robarle tiempo al tiempo", image: "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e021dd6f01837c88311dd661c47", url: "https://open.spotify.com/track/0TCgYIbphnGDyOrdTHRvtJ" }
     ];
     const tripDays = Array.from({ length: 15 }, (_, index) => {
       const date = new Date(startDate);
       date.setDate(startDate.getDate() + index);
       return {
         key: date.toISOString().slice(0, 10),
-        label: new Intl.DateTimeFormat("es-ES", {
-          day: "numeric",
-          month: "long"
-        }).format(date)
+        label: new Intl.DateTimeFormat("es-ES", { day: "numeric", month: "long" }).format(date)
       };
     });
-
+    const state = { plansByDay: {}, phrasesByDay: {}, photosByDay: {} };
     const elements = {
       days: document.getElementById("days"),
       hours: document.getElementById("hours"),
@@ -1073,99 +1012,23 @@
     };
     let plannerRenderedDayKey = "";
     let plannerEditingId = "";
+    let plannerEditingDayKey = "";
 
     function pad(value) {
       return String(value).padStart(2, "0");
     }
 
     function formatTimeInZone(date, timeZone) {
-      return new Intl.DateTimeFormat("es-ES", {
-        timeZone,
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false
-      }).format(date);
+      return new Intl.DateTimeFormat("es-ES", { timeZone, hour: "2-digit", minute: "2-digit", hour12: false }).format(date);
     }
 
     function escapeHtml(value) {
-      return value
+      return String(value)
         .replaceAll("&", "&amp;")
         .replaceAll("<", "&lt;")
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#39;");
-    }
-
-    function getTripStorage() {
-      try {
-        const parsed = JSON.parse(localStorage.getItem(storageKey)) || {};
-        for (const key of Object.keys(parsed)) {
-          const value = parsed[key];
-          if (Array.isArray(value)) {
-            continue;
-          }
-          if (value && (value.plan || value.food)) {
-            parsed[key] = [{
-              id: `migrated-${key}`,
-              plan: value.plan || "",
-              food: value.food || ""
-            }];
-          } else {
-            parsed[key] = [];
-          }
-        }
-        return parsed;
-      } catch {
-        return {};
-      }
-    }
-
-    function setTripStorage(data) {
-      localStorage.setItem(storageKey, JSON.stringify(data));
-    }
-
-    function getPhraseStorage() {
-      try {
-        return JSON.parse(localStorage.getItem(phraseStorageKey)) || {};
-      } catch {
-        return {};
-      }
-    }
-
-    function setPhraseStorage(data) {
-      localStorage.setItem(phraseStorageKey, JSON.stringify(data));
-    }
-
-    function getPhotoStorage() {
-      try {
-        return JSON.parse(localStorage.getItem(photoStorageKey)) || {};
-      } catch {
-        return {};
-      }
-    }
-
-    function setPhotoStorage(data) {
-      localStorage.setItem(photoStorageKey, JSON.stringify(data));
-    }
-
-    function clearPlannerForm() {
-      plannerEditingId = "";
-      elements.planInput.value = "";
-      elements.foodInput.value = "";
-      elements.plannerSave.textContent = "Guardar día";
-      elements.plannerCancel.hidden = true;
-    }
-
-    function updateDailySong(now) {
-      const elapsedDays = Math.max(0, Math.floor((now - startDate) / 86400000));
-      const index = Math.min(elapsedDays, dailyTracks.length - 1);
-      const track = dailyTracks[index];
-
-      elements.songCover.src = track.image;
-      elements.songCover.alt = `Portada de ${track.title}`;
-      elements.songTitle.textContent = track.title;
-      elements.songMeta.textContent = "";
-      elements.songLink.href = track.url || playlistUrl;
     }
 
     function getDayIndex(now) {
@@ -1177,52 +1040,54 @@
       return tripDays[getDayIndex(now)];
     }
 
-    function updateDailyPhrase(now) {
-      const index = getDayIndex(now);
-      elements.phraseText.textContent = dailyPhrases[index];
-      renderSavedPhrases(now);
+    function clearPlannerForm() {
+      plannerEditingId = "";
+      plannerEditingDayKey = "";
+      elements.planInput.value = "";
+      elements.foodInput.value = "";
+      elements.plannerSave.textContent = "Guardar dia";
+      elements.plannerCancel.hidden = true;
+    }
+
+    function updateDailySong(now) {
+      const track = dailyTracks[getDayIndex(now)];
+      elements.songCover.src = track.image;
+      elements.songCover.alt = `Portada de ${track.title}`;
+      elements.songTitle.textContent = track.title;
+      elements.songMeta.textContent = "";
+      elements.songLink.href = track.url || playlistUrl;
     }
 
     function renderSavedPhrases(now) {
       const day = getDayData(now);
-      const saved = getPhraseStorage()[day.key] || { one: "", two: "" };
-      const isEditingPhrases =
-        document.activeElement === elements.phrasePersonOne ||
-        document.activeElement === elements.phrasePersonTwo;
+      const saved = state.phrasesByDay[day.key] || { nuria: "", javi: "" };
+      const isEditing = document.activeElement === elements.phrasePersonOne || document.activeElement === elements.phrasePersonTwo;
 
-      if (!isEditingPhrases) {
-        elements.phrasePersonOne.value = saved.one || "";
-        elements.phrasePersonTwo.value = saved.two || "";
+      if (!isEditing) {
+        elements.phrasePersonOne.value = saved.nuria || "";
+        elements.phrasePersonTwo.value = saved.javi || "";
       }
 
       const blocks = [];
-      if (saved.one) {
-        blocks.push(`
-          <div class="phrase-saved-item">
-            <p class="phrase-saved-name">Nuria</p>
-            <p class="phrase-saved-text">${escapeHtml(saved.one)}</p>
-          </div>
-        `);
+      if (saved.nuria) {
+        blocks.push(`<div class="phrase-saved-item"><p class="phrase-saved-name">Nuria</p><p class="phrase-saved-text">${escapeHtml(saved.nuria)}</p></div>`);
       }
-      if (saved.two) {
-        blocks.push(`
-          <div class="phrase-saved-item">
-            <p class="phrase-saved-name">Javi</p>
-            <p class="phrase-saved-text">${escapeHtml(saved.two)}</p>
-          </div>
-        `);
+      if (saved.javi) {
+        blocks.push(`<div class="phrase-saved-item"><p class="phrase-saved-name">Javi</p><p class="phrase-saved-text">${escapeHtml(saved.javi)}</p></div>`);
       }
-
       elements.phraseSaved.innerHTML = blocks.join("");
+    }
+
+    function updateDailyPhrase(now) {
+      elements.phraseText.textContent = dailyPhrases[getDayIndex(now)];
+      renderSavedPhrases(now);
     }
 
     function renderPhotos(now) {
       const day = getDayData(now);
-      const saved = getPhotoStorage();
-      const current = saved[day.key];
-
-      if (current && current.dataUrl) {
-        elements.photoPreview.src = current.dataUrl;
+      const current = state.photosByDay[day.key];
+      if (current && current.publicUrl) {
+        elements.photoPreview.src = current.publicUrl;
         elements.photoPreview.classList.add("is-visible");
         elements.photoPreview.alt = `Foto guardada del ${day.label}`;
         elements.photoMeta.textContent = `Foto guardada para el ${day.label}.`;
@@ -1232,64 +1097,35 @@
         elements.photoMeta.textContent = "";
       }
 
-      const filledDays = tripDays.filter((tripDay) => saved[tripDay.key] && saved[tripDay.key].dataUrl);
-      if (filledDays.length === 0) {
-        elements.photoList.innerHTML = "";
-        return;
-      }
-
-      elements.photoList.innerHTML = filledDays.map((tripDay) => `
-        <article class="photo-item">
-          <p class="photo-item-date">${escapeHtml(tripDay.label)}</p>
-          <img class="photo-thumb" src="${saved[tripDay.key].dataUrl}" alt="Foto de ${escapeHtml(tripDay.label)}">
-        </article>
-      `).join("");
+      const filledDays = tripDays.filter((tripDay) => state.photosByDay[tripDay.key]?.publicUrl);
+      elements.photoList.innerHTML = filledDays.map((tripDay) => `<article class="photo-item"><p class="photo-item-date">${escapeHtml(tripDay.label)}</p><img class="photo-thumb" src="${escapeHtml(state.photosByDay[tripDay.key].publicUrl)}" alt="Foto de ${escapeHtml(tripDay.label)}"></article>`).join("");
     }
 
     function renderPlanner(now) {
       const currentDay = getDayData(now);
-      const saved = getTripStorage();
-      const currentEntries = saved[currentDay.key] || [];
-      const isEditingPlanner =
-        document.activeElement === elements.planInput ||
-        document.activeElement === elements.foodInput;
+      const currentEntries = state.plansByDay[currentDay.key] || [];
+      const isEditingInputs = document.activeElement === elements.planInput || document.activeElement === elements.foodInput;
 
-      if (plannerRenderedDayKey !== currentDay.key) {
+      if (plannerRenderedDayKey !== currentDay.key && !plannerEditingId) {
+        elements.planInput.value = "";
+        elements.foodInput.value = "";
+      }
+      if (plannerRenderedDayKey !== currentDay.key && plannerEditingDayKey !== currentDay.key) {
         clearPlannerForm();
       }
-
-      if (!isEditingPlanner && !plannerEditingId && plannerRenderedDayKey !== currentDay.key) {
+      if (!isEditingInputs && !plannerEditingId && currentEntries.length === 0) {
         elements.planInput.value = "";
         elements.foodInput.value = "";
       }
       plannerRenderedDayKey = currentDay.key;
 
-      const filledDays = tripDays.filter((day) => {
-        const items = saved[day.key];
-        return Array.isArray(items) && items.length > 0;
-      });
-
+      const filledDays = tripDays.filter((day) => (state.plansByDay[day.key] || []).length > 0);
       if (filledDays.length === 0) {
-        elements.plannerList.innerHTML = '<p class="planner-empty">Todavía no habéis guardado ningún plan.</p>';
+        elements.plannerList.innerHTML = '<p class="planner-empty">Todavia no habeis guardado ningun plan.</p>';
         return;
       }
 
-      elements.plannerList.innerHTML = filledDays.map((day) => {
-        const items = saved[day.key];
-        return `
-          <article class="planner-item">
-            <p class="planner-date">${escapeHtml(day.label)}</p>
-            ${items.map((item) => `
-              <p class="planner-line"><strong>Plan:</strong> ${escapeHtml(item.plan || "Pendiente")}</p>
-              <p class="planner-line"><strong>Comida:</strong> ${escapeHtml(item.food || "Pendiente")}</p>
-              <div class="planner-item-actions">
-                <button class="planner-mini edit" type="button" data-action="edit" data-day="${escapeHtml(day.key)}" data-id="${escapeHtml(item.id)}">Editar</button>
-                <button class="planner-mini delete" type="button" data-action="delete" data-day="${escapeHtml(day.key)}" data-id="${escapeHtml(item.id)}">Borrar</button>
-              </div>
-            `).join("")}
-          </article>
-        `;
-      }).join("");
+      elements.plannerList.innerHTML = filledDays.map((day) => `<article class="planner-item"><p class="planner-date">${escapeHtml(day.label)}</p>${(state.plansByDay[day.key] || []).map((item) => `<p class="planner-line"><strong>Plan:</strong> ${escapeHtml(item.plan || "Pendiente")}</p><p class="planner-line"><strong>Comida:</strong> ${escapeHtml(item.food || "Pendiente")}</p><div class="planner-item-actions"><button class="planner-mini edit" type="button" data-action="edit" data-day="${escapeHtml(day.key)}" data-id="${escapeHtml(item.id)}">Editar</button><button class="planner-mini delete" type="button" data-action="delete" data-day="${escapeHtml(day.key)}" data-id="${escapeHtml(item.id)}">Borrar</button></div>`).join("")}</article>`).join("");
     }
 
     function updateCountdown() {
@@ -1299,7 +1135,6 @@
       const elapsed = now - startDate;
       const progress = Math.min(Math.max(elapsed / totalTrip, 0), 1);
       const progressPercent = Math.round(progress * 100);
-
       elements.routeProgress.style.width = `${progressPercent}%`;
       elements.plane.style.left = `${progressPercent}%`;
       elements.progressText.textContent = `${progressPercent}% del trayecto`;
@@ -1328,64 +1163,65 @@
       const hours = Math.floor((totalSeconds % 86400) / 3600);
       const minutes = Math.floor((totalSeconds % 3600) / 60);
       const seconds = totalSeconds % 60;
-
       elements.days.textContent = pad(days);
       elements.hours.textContent = pad(hours);
       elements.minutes.textContent = pad(minutes);
       elements.seconds.textContent = pad(seconds);
-      elements.daysLeft.textContent = `${days} días por delante`;
+      elements.daysLeft.textContent = `${days} dias por delante`;
+    }
+
+    async function loadCloudData() {
+      const [plansResult, phrasesResult, photosResult] = await Promise.all([
+        supabase.from("trip_plans").select("id, day_key, plan, food, created_at").order("created_at", { ascending: true }),
+        supabase.from("trip_phrases").select("day_key, nuria, javi"),
+        supabase.from("trip_photos").select("day_key, photo_path, updated_at")
+      ]);
+      if (plansResult.error) throw plansResult.error;
+      if (phrasesResult.error) throw phrasesResult.error;
+      if (photosResult.error) throw photosResult.error;
+
+      state.plansByDay = {};
+      for (const item of plansResult.data) {
+        state.plansByDay[item.day_key] = state.plansByDay[item.day_key] || [];
+        state.plansByDay[item.day_key].push(item);
+      }
+
+      state.phrasesByDay = {};
+      for (const item of phrasesResult.data) {
+        state.phrasesByDay[item.day_key] = item;
+      }
+
+      state.photosByDay = {};
+      for (const item of photosResult.data) {
+        const { data } = supabase.storage.from(photoBucket).getPublicUrl(item.photo_path);
+        state.photosByDay[item.day_key] = { photo_path: item.photo_path, publicUrl: data.publicUrl };
+      }
     }
 
     elements.phraseButton.addEventListener("click", () => {
       elements.phraseBox.classList.toggle("is-visible");
     });
 
-    elements.phraseForm.addEventListener("submit", (event) => {
+    elements.phraseForm.addEventListener("submit", async (event) => {
       event.preventDefault();
-
-      const now = new Date();
-      const day = getDayData(now);
-      const one = elements.phrasePersonOne.value.trim();
-      const two = elements.phrasePersonTwo.value.trim();
-
-      if (!one && !two) {
+      const day = getDayData(new Date());
+      const nuria = elements.phrasePersonOne.value.trim();
+      const javi = elements.phrasePersonTwo.value.trim();
+      if (!nuria && !javi) {
         elements.phraseStatus.textContent = "Escribe al menos una frase.";
         return;
       }
 
-      const saved = getPhraseStorage();
-      saved[day.key] = { one, two };
-      setPhraseStorage(saved);
-      elements.phraseStatus.textContent = `Frases guardadas para el ${day.label}.`;
-      renderSavedPhrases(now);
-    });
-
-    elements.photoInput.addEventListener("change", async (event) => {
-      const file = event.target.files && event.target.files[0];
-      if (!file) {
+      elements.phraseStatus.textContent = "Guardando...";
+      const { error } = await supabase.from("trip_phrases").upsert({ day_key: day.key, nuria, javi, updated_at: new Date().toISOString() });
+      if (error) {
+        elements.phraseStatus.textContent = "No se pudieron guardar las frases.";
         return;
       }
 
-      try {
-        const dataUrl = await new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onload = () => resolve(reader.result);
-          reader.onerror = () => reject(new Error("No se pudo leer la imagen."));
-          reader.readAsDataURL(file);
-        });
-
-        const now = new Date();
-        const day = getDayData(now);
-        const saved = getPhotoStorage();
-        saved[day.key] = { dataUrl };
-        setPhotoStorage(saved);
-        elements.photoStatus.textContent = `Foto guardada para el ${day.label}.`;
-        renderPhotos(now);
-      } catch {
-        elements.photoStatus.textContent = "No se pudo guardar la foto.";
-      } finally {
-        elements.photoInput.value = "";
-      }
+      state.phrasesByDay[day.key] = { day_key: day.key, nuria, javi };
+      elements.phraseStatus.textContent = `Frases guardadas para el ${day.label}.`;
+      renderSavedPhrases(new Date());
     });
 
     elements.plannerToggle.addEventListener("click", () => {
@@ -1397,21 +1233,17 @@
       elements.plannerStatus.textContent = "";
     });
 
-    elements.plannerList.addEventListener("click", (event) => {
+    elements.plannerList.addEventListener("click", async (event) => {
       const button = event.target.closest("button[data-action]");
-      if (!button) {
-        return;
-      }
-
+      if (!button) return;
       const action = button.dataset.action;
       const dayKey = button.dataset.day;
       const itemId = button.dataset.id;
-      const saved = getTripStorage();
-      const items = saved[dayKey] || [];
-      const item = items.find((entry) => entry.id === itemId);
+      const item = (state.plansByDay[dayKey] || []).find((entry) => entry.id === itemId);
 
       if (action === "edit" && item) {
-        plannerEditingId = itemId;
+        plannerEditingId = item.id;
+        plannerEditingDayKey = dayKey;
         elements.planInput.value = item.plan || "";
         elements.foodInput.value = item.food || "";
         elements.plannerSave.textContent = "Guardar cambios";
@@ -1422,58 +1254,105 @@
       }
 
       if (action === "delete") {
-        saved[dayKey] = items.filter((entry) => entry.id !== itemId);
-        if (saved[dayKey].length === 0) {
-          delete saved[dayKey];
+        const { error } = await supabase.from("trip_plans").delete().eq("id", itemId);
+        if (error) {
+          elements.plannerStatus.textContent = "No se pudo borrar la entrada.";
+          return;
         }
-        if (plannerEditingId === itemId) {
-          clearPlannerForm();
-        }
-        setTripStorage(saved);
+        state.plansByDay[dayKey] = (state.plansByDay[dayKey] || []).filter((entry) => entry.id !== itemId);
+        if (state.plansByDay[dayKey].length === 0) delete state.plansByDay[dayKey];
+        if (plannerEditingId === itemId) clearPlannerForm();
         elements.plannerStatus.textContent = "Entrada borrada.";
         renderPlanner(new Date());
       }
     });
 
-    elements.plannerForm.addEventListener("submit", (event) => {
+    elements.plannerForm.addEventListener("submit", async (event) => {
       event.preventDefault();
-
-      const now = new Date();
-      const day = getDayData(now);
-      const saved = getTripStorage();
+      const currentDay = getDayData(new Date());
+      const targetDayKey = plannerEditingDayKey || currentDay.key;
+      const targetDay = tripDays.find((day) => day.key === targetDayKey) || currentDay;
       const plan = elements.planInput.value.trim();
       const food = elements.foodInput.value.trim();
-
       if (!plan && !food) {
         elements.plannerStatus.textContent = "Escribe al menos un plan o una comida.";
         return;
       }
 
-      saved[day.key] = saved[day.key] || [];
-
+      elements.plannerStatus.textContent = "Guardando...";
       if (plannerEditingId) {
-        saved[day.key] = saved[day.key].map((entry) => entry.id === plannerEditingId ? {
-          ...entry,
-          plan,
-          food
-        } : entry);
-        elements.plannerStatus.textContent = `Actualizado para el ${day.label}.`;
+        const { data, error } = await supabase.from("trip_plans").update({ plan, food }).eq("id", plannerEditingId).select("id, day_key, plan, food, created_at").single();
+        if (error) {
+          elements.plannerStatus.textContent = "No se pudieron guardar los cambios.";
+          return;
+        }
+        state.plansByDay[targetDayKey] = (state.plansByDay[targetDayKey] || []).map((entry) => entry.id === plannerEditingId ? data : entry);
+        elements.plannerStatus.textContent = `Actualizado para el ${targetDay.label}.`;
       } else {
-        saved[day.key].push({
-          id: `${day.key}-${Date.now()}`,
-          plan,
-          food
-        });
-        elements.plannerStatus.textContent = `Guardado para el ${day.label}.`;
+        const { data, error } = await supabase.from("trip_plans").insert({ day_key: targetDayKey, plan, food }).select("id, day_key, plan, food, created_at").single();
+        if (error) {
+          elements.plannerStatus.textContent = "No se pudo guardar la entrada.";
+          return;
+        }
+        state.plansByDay[targetDayKey] = state.plansByDay[targetDayKey] || [];
+        state.plansByDay[targetDayKey].push(data);
+        elements.plannerStatus.textContent = `Guardado para el ${targetDay.label}.`;
       }
 
-      setTripStorage(saved);
       clearPlannerForm();
-      renderPlanner(now);
+      renderPlanner(new Date());
     });
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+    elements.photoInput.addEventListener("change", async (event) => {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      const day = getDayData(new Date());
+      const extension = (file.name.split(".").pop() || "jpg").toLowerCase();
+      const filePath = `${day.key}-${Date.now()}.${extension}`;
+      const previous = state.photosByDay[day.key];
+      elements.photoStatus.textContent = "Subiendo foto...";
+
+      const { error: uploadError } = await supabase.storage.from(photoBucket).upload(filePath, file, { upsert: false });
+      if (uploadError) {
+        elements.photoStatus.textContent = "No se pudo subir la foto.";
+        elements.photoInput.value = "";
+        return;
+      }
+
+      if (previous?.photo_path) {
+        await supabase.storage.from(photoBucket).remove([previous.photo_path]);
+      }
+
+      const { error: rowError } = await supabase.from("trip_photos").upsert({ day_key: day.key, photo_path: filePath, updated_at: new Date().toISOString() });
+      if (rowError) {
+        elements.photoStatus.textContent = "La foto se subio pero no se pudo registrar.";
+        elements.photoInput.value = "";
+        return;
+      }
+
+      const { data } = supabase.storage.from(photoBucket).getPublicUrl(filePath);
+      state.photosByDay[day.key] = { photo_path: filePath, publicUrl: data.publicUrl };
+      elements.photoStatus.textContent = `Foto guardada para el ${day.label}.`;
+      elements.photoInput.value = "";
+      renderPhotos(new Date());
+    });
+
+    async function init() {
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+      try {
+        await loadCloudData();
+        updateCountdown();
+      } catch (error) {
+        console.error(error);
+        elements.plannerStatus.textContent = "No se pudo conectar con Supabase.";
+        elements.phraseStatus.textContent = "No se pudo conectar con Supabase.";
+        elements.photoStatus.textContent = "No se pudo conectar con Supabase.";
+      }
+    }
+
+    init();
   </script>
 </body>
 </html>
+
