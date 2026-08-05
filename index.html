@@ -333,15 +333,7 @@
 
     .phrase-box.is-visible {
       display: block;
-    }
-
-    .phrase-subtitle {
-      margin: 12px 0 0;
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.4;
-      text-align: left;
-    }
+    }
 
     .phrase-form {
       display: grid;
@@ -659,27 +651,9 @@
       font-weight: 800;
     }
 
-    .photo-subtitle {
-      margin: 0 0 14px;
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.4;
-    }
-
     .photo-actions {
       display: grid;
       gap: 10px;
-    }
-
-    .photo-secondary {
-      border: 0;
-      border-radius: 16px;
-      padding: 14px 16px;
-      background: rgba(36, 59, 99, 0.12);
-      color: #243b63;
-      font: inherit;
-      font-weight: 800;
-      cursor: pointer;
     }
 
     .photo-button {
@@ -719,37 +693,49 @@
     }
 
     .photo-preview-wrap {
-      margin-top: 14px;
-    }
-
-    .photo-preview {
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      object-fit: cover;
-      border-radius: 22px;
       display: none;
-      box-shadow: 0 14px 28px rgba(42, 31, 26, 0.14);
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.5);
     }
 
-    .photo-preview.is-visible {
+    .photo-preview-wrap.is-visible {
       display: block;
     }
 
     .photo-meta {
-      margin: 10px 0 0;
-      color: var(--muted);
-      font-size: 0.84rem;
-      text-align: center;
+      margin: 0 0 10px;
+      color: #243b63;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 800;
+    }
+
+    .photo-strip-title {
+      display: none;
+      margin: 14px 0 8px;
+      color: #243b63;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .photo-strip-title.is-visible {
+      display: block;
     }
 
     .photo-list {
       display: grid;
       gap: 10px;
-      margin-top: 14px;
+      margin-top: 0;
     }
 
     .photo-item {
-      padding: 14px;
+      padding: 10px;
       border-radius: 18px;
       background: rgba(255, 255, 255, 0.72);
       border: 1px solid rgba(255, 255, 255, 0.5);
@@ -772,10 +758,16 @@
 
     .photo-thumb {
       width: 100%;
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 1;
       object-fit: cover;
       border-radius: 16px;
       display: block;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
     }
 
     .value {
@@ -928,7 +920,6 @@
       <div class="phrase-box" id="phrase-box">
         <span class="phrase-label">Frase del día</span>
         <p class="phrase-text" id="phrase-text"></p>
-        <p class="phrase-subtitle">También podéis guardar una frase cada uno para hoy.</p>
         <form class="phrase-form" id="phrase-form">
           <input class="phrase-input" id="phrase-person-one" type="text" maxlength="160" placeholder="Frase de Nuria">
           <input class="phrase-input" id="phrase-person-two" type="text" maxlength="160" placeholder="Frase de Javi">
@@ -959,7 +950,6 @@
     <section class="photo-diary" aria-label="Diario de fotos">
       <button class="photo-toggle" id="photo-toggle" type="button">Diario de fotos</button>
       <div class="photo-content" id="photo-content">
-        <p class="photo-subtitle">Sube una foto de cada dia. En movil, el boton abrira la camara directamente si el navegador lo permite.</p>
         <div class="photo-actions">
           <label class="photo-button" for="photo-input">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -968,13 +958,13 @@
             Abrir camara
           </label>
           <input class="photo-input" id="photo-input" type="file" accept="image/*" capture="environment">
-          <button class="photo-secondary" id="photo-delete" type="button">Borrar foto del dia</button>
           <p class="photo-status" id="photo-status"></p>
         </div>
         <div class="photo-preview-wrap">
-          <img class="photo-preview" id="photo-preview" alt="Foto guardada del dia">
-          <p class="photo-meta" id="photo-meta"></p>
+          <p class="photo-meta" id="photo-meta">Fotos de hoy</p>
+          <div class="photo-grid" id="photo-today-grid"></div>
         </div>
+        <p class="photo-strip-title" id="photo-strip-title">Recuerdos guardados</p>
         <div class="photo-list" id="photo-list"></div>
       </div>
     </section>
@@ -1058,10 +1048,11 @@
       photoSection: document.querySelector(".photo-diary"),
       photoToggle: document.getElementById("photo-toggle"),
       photoInput: document.getElementById("photo-input"),
-      photoDelete: document.getElementById("photo-delete"),
       photoStatus: document.getElementById("photo-status"),
-      photoPreview: document.getElementById("photo-preview"),
+      photoPreviewWrap: document.querySelector(".photo-preview-wrap"),
       photoMeta: document.getElementById("photo-meta"),
+      photoTodayGrid: document.getElementById("photo-today-grid"),
+      photoStripTitle: document.getElementById("photo-strip-title"),
       photoList: document.getElementById("photo-list"),
       timeKorea: document.getElementById("time-korea"),
       timeSpain: document.getElementById("time-spain"),
@@ -1150,20 +1141,20 @@
 
     function renderPhotos(now) {
       const day = getDayData(now);
-      const current = state.photosByDay[day.key];
-      if (current && current.publicUrl) {
-        elements.photoPreview.src = current.publicUrl;
-        elements.photoPreview.classList.add("is-visible");
-        elements.photoPreview.alt = `Foto guardada del ${day.label}`;
-        elements.photoMeta.textContent = `Foto guardada para el ${day.label}.`;
+      const currentItems = state.photosByDay[day.key] || [];
+      if (currentItems.length > 0) {
+        elements.photoPreviewWrap.classList.add("is-visible");
+        elements.photoMeta.textContent = `Fotos del ${day.label}`;
+        elements.photoTodayGrid.innerHTML = currentItems.map((item) => `<article class="photo-item"><img class="photo-thumb" src="${escapeHtml(item.publicUrl)}" alt="Foto de ${escapeHtml(day.label)}"><div class="photo-item-actions"><button class="planner-mini delete" type="button" data-action="delete-photo" data-day="${escapeHtml(day.key)}" data-id="${escapeHtml(item.id)}">Borrar foto</button></div></article>`).join("");
       } else {
-        elements.photoPreview.removeAttribute("src");
-        elements.photoPreview.classList.remove("is-visible");
-        elements.photoMeta.textContent = "";
+        elements.photoPreviewWrap.classList.remove("is-visible");
+        elements.photoTodayGrid.innerHTML = "";
       }
 
-      const filledDays = tripDays.filter((tripDay) => state.photosByDay[tripDay.key]?.publicUrl);
-      elements.photoList.innerHTML = filledDays.map((tripDay) => `<article class="photo-item"><p class="photo-item-date">${escapeHtml(tripDay.label)}</p><img class="photo-thumb" src="${escapeHtml(state.photosByDay[tripDay.key].publicUrl)}" alt="Foto de ${escapeHtml(tripDay.label)}"><div class="photo-item-actions"><button class="planner-mini delete" type="button" data-action="delete-photo" data-day="${escapeHtml(tripDay.key)}">Borrar foto</button></div></article>`).join("");
+      const filledDays = tripDays.filter((tripDay) => (state.photosByDay[tripDay.key] || []).length > 0);
+      const historyDays = filledDays.filter((tripDay) => tripDay.key !== day.key);
+      elements.photoStripTitle.classList.toggle("is-visible", historyDays.length > 0);
+      elements.photoList.innerHTML = historyDays.map((tripDay) => `<article class="photo-item"><p class="photo-item-date">${escapeHtml(tripDay.label)}</p><div class="photo-grid">${(state.photosByDay[tripDay.key] || []).map((item) => `<div><img class="photo-thumb" src="${escapeHtml(item.publicUrl)}" alt="Foto de ${escapeHtml(tripDay.label)}"><div class="photo-item-actions"><button class="planner-mini delete" type="button" data-action="delete-photo" data-day="${escapeHtml(tripDay.key)}" data-id="${escapeHtml(item.id)}">Borrar foto</button></div></div>`).join("")}</div></article>`).join("");
     }
 
     function renderPlanner(now) {
@@ -1235,7 +1226,7 @@
       const [plansResult, phrasesResult, photosResult] = await Promise.all([
         supabase.from("trip_plans").select("id, day_key, plan, food, created_at").order("created_at", { ascending: true }),
         supabase.from("trip_phrases").select("day_key, nuria, javi"),
-        supabase.from("trip_photos").select("day_key, photo_path, updated_at")
+        supabase.from("trip_photos").select("id, day_key, photo_path, created_at").order("created_at", { ascending: false })
       ]);
       if (plansResult.error) throw plansResult.error;
       if (phrasesResult.error) throw phrasesResult.error;
@@ -1255,7 +1246,8 @@
       state.photosByDay = {};
       for (const item of photosResult.data) {
         const { data } = supabase.storage.from(photoBucket).getPublicUrl(item.photo_path);
-        state.photosByDay[item.day_key] = { photo_path: item.photo_path, publicUrl: data.publicUrl };
+        state.photosByDay[item.day_key] = state.photosByDay[item.day_key] || [];
+        state.photosByDay[item.day_key].push({ id: item.id, photo_path: item.photo_path, publicUrl: data.publicUrl });
       }
     }
 
@@ -1416,7 +1408,6 @@
       const day = getDayData(new Date());
       const extension = (file.name.split(".").pop() || "jpg").toLowerCase();
       const filePath = `${day.key}-${Date.now()}.${extension}`;
-      const previous = state.photosByDay[day.key];
       elements.photoStatus.textContent = "Subiendo foto...";
 
       const { error: uploadError } = await supabase.storage.from(photoBucket).upload(filePath, file, { upsert: false });
@@ -1426,11 +1417,7 @@
         return;
       }
 
-      if (previous?.photo_path) {
-        await supabase.storage.from(photoBucket).remove([previous.photo_path]);
-      }
-
-      const { error: rowError } = await supabase.from("trip_photos").upsert({ day_key: day.key, photo_path: filePath, updated_at: new Date().toISOString() });
+      const { data: rowData, error: rowError } = await supabase.from("trip_photos").insert({ day_key: day.key, photo_path: filePath }).select("id, day_key, photo_path, created_at").single();
       if (rowError) {
         elements.photoStatus.textContent = "La foto se subio pero no se pudo registrar.";
         elements.photoInput.value = "";
@@ -1438,30 +1425,10 @@
       }
 
       const { data } = supabase.storage.from(photoBucket).getPublicUrl(filePath);
-      state.photosByDay[day.key] = { photo_path: filePath, publicUrl: data.publicUrl };
+      state.photosByDay[day.key] = state.photosByDay[day.key] || [];
+      state.photosByDay[day.key].unshift({ id: rowData.id, photo_path: filePath, publicUrl: data.publicUrl });
       elements.photoStatus.textContent = `Foto guardada para el ${day.label}.`;
       elements.photoInput.value = "";
-      renderPhotos(new Date());
-    });
-
-    elements.photoDelete.addEventListener("click", async () => {
-      const day = getDayData(new Date());
-      const current = state.photosByDay[day.key];
-      if (!current?.photo_path) {
-        elements.photoStatus.textContent = "No hay foto guardada para hoy.";
-        return;
-      }
-
-      elements.photoStatus.textContent = "Borrando foto...";
-      await supabase.storage.from(photoBucket).remove([current.photo_path]);
-      const { error } = await supabase.from("trip_photos").delete().eq("day_key", day.key);
-      if (error) {
-        elements.photoStatus.textContent = "No se pudo borrar la foto.";
-        return;
-      }
-
-      delete state.photosByDay[day.key];
-      elements.photoStatus.textContent = "Foto borrada.";
       renderPhotos(new Date());
     });
 
@@ -1470,18 +1437,43 @@
       if (!button) return;
 
       const dayKey = button.dataset.day;
-      const current = state.photosByDay[dayKey];
+      const photoId = button.dataset.id;
+      const current = (state.photosByDay[dayKey] || []).find((item) => item.id === photoId);
       if (!current?.photo_path) return;
 
       elements.photoStatus.textContent = "Borrando foto...";
       await supabase.storage.from(photoBucket).remove([current.photo_path]);
-      const { error } = await supabase.from("trip_photos").delete().eq("day_key", dayKey);
+      const { error } = await supabase.from("trip_photos").delete().eq("id", photoId);
       if (error) {
         elements.photoStatus.textContent = "No se pudo borrar la foto.";
         return;
       }
 
-      delete state.photosByDay[dayKey];
+      state.photosByDay[dayKey] = (state.photosByDay[dayKey] || []).filter((item) => item.id !== photoId);
+      if (state.photosByDay[dayKey].length === 0) delete state.photosByDay[dayKey];
+      elements.photoStatus.textContent = "Foto borrada.";
+      renderPhotos(new Date());
+    });
+
+    elements.photoTodayGrid.addEventListener("click", async (event) => {
+      const button = event.target.closest("button[data-action='delete-photo']");
+      if (!button) return;
+
+      const dayKey = button.dataset.day;
+      const photoId = button.dataset.id;
+      const current = (state.photosByDay[dayKey] || []).find((item) => item.id === photoId);
+      if (!current?.photo_path) return;
+
+      elements.photoStatus.textContent = "Borrando foto...";
+      await supabase.storage.from(photoBucket).remove([current.photo_path]);
+      const { error } = await supabase.from("trip_photos").delete().eq("id", photoId);
+      if (error) {
+        elements.photoStatus.textContent = "No se pudo borrar la foto.";
+        return;
+      }
+
+      state.photosByDay[dayKey] = (state.photosByDay[dayKey] || []).filter((item) => item.id !== photoId);
+      if (state.photosByDay[dayKey].length === 0) delete state.photosByDay[dayKey];
       elements.photoStatus.textContent = "Foto borrada.";
       renderPhotos(new Date());
     });
@@ -1504,5 +1496,6 @@
   </script>
 </body>
 </html>
+
 
 
