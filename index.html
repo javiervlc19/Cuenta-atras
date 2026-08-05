@@ -3117,6 +3117,19 @@
         font-size: 0.52rem;
       }
     }
+
+    .planner-toggle::after,
+    .planner.is-open .planner-toggle::after,
+    .photo-toggle::after,
+    .photo-diary.is-open .photo-toggle::after {
+      display: none !important;
+      content: "" !important;
+    }
+
+    .travel-card-replica .travel-date {
+      display: none !important;
+      margin: 0 !important;
+    }
   </style>
 </head>
 <body>
