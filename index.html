@@ -1591,6 +1591,19 @@
         return;
       }
 
+      const { data: remainingRows, error: verifyError } = await supabase.from("trip_photos").select("id").in("id", selectedIds);
+      if (verifyError) {
+        elements.photoStatus.textContent = "No se pudo comprobar si las fotos se borraron.";
+        return;
+      }
+
+      if ((remainingRows || []).length > 0) {
+        elements.photoStatus.textContent = "Algunas fotos siguen en el diario. Prueba otra vez.";
+        await loadCloudData();
+        renderPhotos(new Date());
+        return;
+      }
+
       let storageWarning = false;
       if (photoPaths.length > 0) {
         const { error: storageError } = await supabase.storage.from(photoBucket).remove(photoPaths);
